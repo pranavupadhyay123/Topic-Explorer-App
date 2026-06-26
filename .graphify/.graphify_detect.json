@@ -1,0 +1,56 @@
+{
+  "files": {
+    "code": [
+      "src/ai/client.rs",
+      "src/ai/json_utils.rs",
+      "src/ai/mod.rs",
+      "src/ai/providers.rs",
+      "src/ai/services.rs",
+      "src/db/mod.rs",
+      "src/db/models.rs",
+      "src/db/schema.rs",
+      "src/main.rs",
+      "src/routes/ai_routes.rs",
+      "src/routes/concepts.rs",
+      "src/routes/health.rs",
+      "src/routes/mod.rs",
+      "src/routes/notes.rs",
+      "src/routes/search.rs",
+      "src/routes/settings.rs",
+      "src/routes/topics.rs",
+      "src/routes/workspaces.rs",
+      "static/js/app.js",
+      "static/js/dashboard.js",
+      "static/js/explore.js"
+    ],
+    "document": [
+      "static/explore.html",
+      "static/index.html",
+      "static/notes.html",
+      "static/settings.html"
+    ],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "total_files": 25,
+  "total_words": 15795,
+  "needs_graph": false,
+  "warning": "Corpus is ~15,795 words - fits in a single context window. You may not need a graph.",
+  "skipped_sensitive": [],
+  "graphifyignore_patterns": 0,
+  "scope": {
+    "requested_mode": "auto",
+    "resolved_mode": "all",
+    "source": "default-auto",
+    "root": ".",
+    "candidate_count": null,
+    "included_count": 25,
+    "excluded_untracked_count": 0,
+    "excluded_ignored_count": 0,
+    "excluded_sensitive_count": 0,
+    "missing_committed_count": 0,
+    "warnings": [],
+    "recommendation": null
+  }
+}

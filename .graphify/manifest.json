@@ -1,0 +1,102 @@
+{
+  "src/ai/client.rs": {
+    "mtime": 1782473074550.124,
+    "hash": "9736920568272c7a7c58d618c1adab88"
+  },
+  "src/ai/json_utils.rs": {
+    "mtime": 1782464922290.4485,
+    "hash": "f83218354d5425930446c1a675b0c849"
+  },
+  "src/ai/mod.rs": {
+    "mtime": 1782462308211.3416,
+    "hash": "2f026f13a36b02cc5a2eabef65cd2dbe"
+  },
+  "src/ai/providers.rs": {
+    "mtime": 1782465334784.9482,
+    "hash": "de0adb38b7b6a1a795312b5fead744c9"
+  },
+  "src/ai/services.rs": {
+    "mtime": 1782476068968.2559,
+    "hash": "399bfdec6fc4148c16cda74d72470dd9"
+  },
+  "src/db/mod.rs": {
+    "mtime": 1782462233766.5378,
+    "hash": "14137bcdb8afe9e062dd94a9099d05c0"
+  },
+  "src/db/models.rs": {
+    "mtime": 1782473074543.4653,
+    "hash": "5d54fab86db7075631f50d5891b3dcb4"
+  },
+  "src/db/schema.rs": {
+    "mtime": 1782462258966.8098,
+    "hash": "b57d02b1d186c7afb23a8354e54d08a1"
+  },
+  "src/main.rs": {
+    "mtime": 1782463247741.9485,
+    "hash": "d6c320481f0b1cb321c9f96ebcda808a"
+  },
+  "src/routes/ai_routes.rs": {
+    "mtime": 1782473074547.2117,
+    "hash": "7c02508d661598e9f0de59c398c2c5e3"
+  },
+  "src/routes/concepts.rs": {
+    "mtime": 1782462554707.5845,
+    "hash": "31c94792d09e6da38c020e7979827d3f"
+  },
+  "src/routes/health.rs": {
+    "mtime": 1782462463830.865,
+    "hash": "12df92bcfd140eaa2e9077e10e13c71a"
+  },
+  "src/routes/mod.rs": {
+    "mtime": 1782478195019.5713,
+    "hash": "6ca022a8eb4173b444c5182b1eedf8f5"
+  },
+  "src/routes/notes.rs": {
+    "mtime": 1782462582956.808,
+    "hash": "58e236fd765b870c10a0b5c4822fc239"
+  },
+  "src/routes/search.rs": {
+    "mtime": 1782462617360.0806,
+    "hash": "9315d0224aac80bc874b0913ef21783c"
+  },
+  "src/routes/settings.rs": {
+    "mtime": 1782462600566.9475,
+    "hash": "4795ea1b6d1483dbde66f33b0e27421b"
+  },
+  "src/routes/topics.rs": {
+    "mtime": 1782478186547.4219,
+    "hash": "d242ac6e7ed9932e75777e5f1e270b4e"
+  },
+  "src/routes/workspaces.rs": {
+    "mtime": 1782462489567.0688,
+    "hash": "0e37ec5bfc9e00c2ee1b0269ff0308a8"
+  },
+  "static/js/app.js": {
+    "mtime": 1782473167765.68,
+    "hash": "7ce401ca1efa4d7430791b57b3c4444d"
+  },
+  "static/js/dashboard.js": {
+    "mtime": 1782479009334.6199,
+    "hash": "92822fc3e0a8718b4e993165fa6106a7"
+  },
+  "static/js/explore.js": {
+    "mtime": 1782475738627.4512,
+    "hash": "baaea9585d07f008c0542403f8419e33"
+  },
+  "static/explore.html": {
+    "mtime": 1782477858768.0737,
+    "hash": "a7ba7a2401e3c376c03ec7095c3e8f1e"
+  },
+  "static/index.html": {
+    "mtime": 1782481335855.514,
+    "hash": "8850ab32861b1aa40a6588d2cf8396e9"
+  },
+  "static/notes.html": {
+    "mtime": 1782463011697.268,
+    "hash": "f71e834cf156e46da6ba1de0eb04c3c3"
+  },
+  "static/settings.html": {
+    "mtime": 1782477878788.3862,
+    "hash": "6d74d08e71f909e2f4de929599715d66"
+  }
+}

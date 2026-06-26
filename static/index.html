@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic Explorer</title>
+  <meta name="description" content="AI-Powered Knowledge Exploration">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/logo.png">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Mobile/Tablet Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="app-sidebar">
+      
+      <!-- App Brand -->
+      <div class="sidebar-brand" style="padding: var(--space-md) var(--space-md) 0 var(--space-md); display: flex; align-items: center; gap: var(--space-sm);">
+        <img src="/assets/logo.png" alt="Topic Explorer Logo" style="width: 28px; height: 28px; object-fit: contain;">
+        <span class="font-bold text-primary" style="font-size: 1.1rem; letter-spacing: -0.02em;">Topic Explorer</span>
+      </div>
+      
+      <!-- Workspace Selector -->
+      <div class="sidebar-header flex justify-between" onclick="handleWorkspaceClick(event)">
+        <div class="workspace-info">
+          <div class="workspace-avatar" id="current-workspace-avatar">W</div>
+          <div class="workspace-name-block">
+            <span class="text-xs text-muted">Workspace</span>
+            <span class="workspace-name" id="sidebar-workspace-name">My Workspace <span class="chevron">▼</span></span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-icon sidebar-toggle-desktop" id="sidebar-toggle-desktop" onclick="toggleSidebar(event)">
+          <span class="icon"><i data-lucide="chevron-left" style="width:20px;height:20px;"></i></span>
+        </button>
+      </div>
+
+      <!-- Global Search -->
+      <div class="sidebar-search-container" onclick="openCommandPalette()">
+        <div class="search-input-fake">
+          <span class="search-icon"><i data-lucide="search" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i></span>
+          <span class="search-placeholder">Search...</span>
+          <span class="search-shortcut">⌘K</span>
+        </div>
+      </div>
+
+      <!-- Topics List -->
+      <div class="sidebar-scroll-area">
+        <div class="sidebar-section-title">Topics</div>
+        <div class="topics-list" id="sidebar-topics-list">
+          <!-- Topics injected via JS -->
+        </div>
+      </div>
+
+      <!-- Bottom Sidebar Nav -->
+      <div class="sidebar-footer">
+        <button class="nav-item" onclick="navigate('dashboard')">
+          <span class="icon"><i data-lucide="home"></i></span> <span class="label">Dashboard</span>
+        </button>
+        <button class="nav-item" onclick="navigate('notes')">
+          <span class="icon"><i data-lucide="file-text"></i></span> <span class="label">Notes</span>
+        </button>
+        <button class="nav-item" onclick="navigate('settings')">
+          <span class="icon"><i data-lucide="settings"></i></span> <span class="label">Settings</span>
+        </button>
+        <div class="theme-toggle-container">
+          <button class="nav-item" onclick="appToggleTheme()">
+            <span class="icon theme-icon"><i data-lucide="moon"></i></span> <span class="label theme-label">Dark Mode</span>
+          </button>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Mobile Sticky Header -->
+      <header class="mobile-header">
+        <button class="btn btn-ghost btn-icon" onclick="openSidebar()">
+          <span class="icon"><i data-lucide="menu" style="width:20px;height:20px;"></i></span>
+        </button>
+        <div class="mobile-header-title flex items-center gap-xs" style="justify-content: center;">
+          <img src="/assets/logo.png" alt="Logo" style="width: 20px; height: 20px; object-fit: contain;">
+          <span id="mobile-header-title">Topic Explorer</span>
+        </div>
+        <div class="mobile-header-actions">
+          <button class="btn btn-ghost btn-icon" onclick="openCommandPalette()"><i data-lucide="search" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i></button>
+        </div>
+      </header>
+      
+      <!-- View: Dashboard (Landing Page) -->
+      <div id="view-dashboard" class="view-container active">
+        <div class="landing-page">
+          <h1 class="landing-title">What would you like to explore today?</h1>
+          <div class="landing-search-container">
+            <input type="text" id="landing-explore-input" class="landing-search-input" placeholder="e.g. Quantum Computing, Roman Empire..." onkeydown="if(event.key==='Enter')quickExploreLanding()">
+            <button class="btn btn-primary landing-search-btn" id="landing-explore-btn" onclick="quickExploreLanding()"><i data-lucide="rocket" class="mr-sm"></i> Explore</button>
+          </div>
+          
+          <div class="suggestions-grid">
+            <button class="suggestion-chip" onclick="exploreSuggestion('Machine Learning')"><i data-lucide="brain" class="mr-sm"></i> Machine Learning</button>
+            <button class="suggestion-chip" onclick="exploreSuggestion('Climate Change')"><i data-lucide="globe" class="mr-sm"></i> Climate Change</button>
+            <button class="suggestion-chip" onclick="exploreSuggestion('Quantum Mechanics')"><i data-lucide="atom" class="mr-sm"></i> Quantum Mechanics</button>
+            <button class="suggestion-chip" onclick="exploreSuggestion('History of Rome')"><i data-lucide="landmark" class="mr-sm"></i> History of Rome</button>
+          </div>
+          
+          <div class="workspaces-dashboard-section mt-xl">
+            <div class="flex justify-between items-center mb-md">
+              <h2 class="section-title">Your Workspaces</h2>
+              <button class="btn btn-secondary btn-sm" onclick="openModal('create-workspace-modal')"><i data-lucide="folder-plus" class="mr-sm"></i> New Workspace</button>
+            </div>
+            <div id="workspaces-grid" class="grid grid-auto">
+              <!-- Workspaces loaded dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View: Explore (Topic Exploration) -->
+      <div id="view-explore" class="view-container">
+        <!-- Topic Header -->
+        <header class="topic-header">
+          <div class="topic-header-left">
+            <div class="breadcrumb text-sm text-muted">
+              <span id="topic-breadcrumb-workspace">Workspace</span> / <span id="topic-breadcrumb-title">Topic</span>
+            </div>
+            <h1 class="topic-title" id="explore-topic-title">Loading...</h1>
+            <p class="topic-status text-sm text-muted" id="explore-topic-status"></p>
+          </div>
+          <div class="topic-header-right flex gap-sm">
+             <button class="btn btn-primary" id="start-explore-btn" onclick="startExploration()" style="display:none;">
+              <i data-lucide="rocket" class="mr-sm"></i> Explore with AI
+            </button>
+            <button class="btn btn-ghost btn-icon"><i data-lucide="share" style="width:20px;height:20px;"></i></button>
+            <button class="btn btn-ghost btn-icon" onclick="deleteCurrentTopic()"><i data-lucide="trash-2" style="width:20px;height:20px;"></i></button>
+          </div>
+        </header>
+
+        <!-- Tabs -->
+        <div id="explore-tabs" class="exploration-content">
+          <div class="tabs-nav">
+            <button class="tab active" data-tab="graph"><i data-lucide="network" class="mr-xs"></i> Graph</button>
+            <button class="tab" data-tab="tree"><i data-lucide="git-merge" class="mr-xs"></i> Tree</button>
+            <button class="tab" data-tab="concepts"><i data-lucide="package" class="mr-xs"></i> Concepts</button>
+            <button class="tab" data-tab="timeline"><i data-lucide="calendar" class="mr-xs"></i> Timeline</button>
+            <button class="tab" data-tab="flashcards"><i data-lucide="layers" class="mr-xs"></i> Cards</button>
+            <button class="tab" data-tab="learning"><i data-lucide="map" class="mr-xs"></i> Path</button>
+            <button class="tab" data-tab="tutor"><i data-lucide="bot" class="mr-xs"></i> AI Tutor</button>
+          </div>
+
+          <div class="tab-panels-container">
+            <!-- Graph Panel -->
+            <div class="tab-panel active" data-panel="graph">
+              <div class="graph-container" id="graph-container">
+                <div class="empty-state" id="graph-placeholder">
+                  <div class="empty-state-icon"><i data-lucide="network" style="width:48px;height:48px;stroke-width:1px;"></i></div>
+                  <div class="empty-state-title">Knowledge Graph</div>
+                  <div class="text-muted">Click "Explore with AI" to generate</div>
+                </div>
+              </div>
+            </div>
+            <!-- Tree Panel -->
+            <div class="tab-panel" data-panel="tree">
+              <div class="graph-container" id="tree-container">
+                <div class="empty-state" id="tree-placeholder">
+                  <div class="empty-state-icon"><i data-lucide="git-merge" style="width:48px;height:48px;stroke-width:1px;"></i></div>
+                  <div class="empty-state-title">Hierarchy Tree</div>
+                  <div class="text-muted">Click "Explore with AI" to generate</div>
+                </div>
+              </div>
+            </div>
+            <!-- Concepts -->
+            <div class="tab-panel" data-panel="concepts">
+              <div id="concepts-list" class="grid grid-auto p-md"></div>
+            </div>
+            <!-- Timeline -->
+            <div class="tab-panel" data-panel="timeline">
+              <div id="timeline-list" class="p-md"></div>
+            </div>
+            <!-- Flashcards -->
+            <div class="tab-panel" data-panel="flashcards">
+              <div id="flashcards-area" class="p-md"></div>
+            </div>
+            <!-- Learning Path -->
+            <div class="tab-panel" data-panel="learning">
+              <div id="learning-path-area" class="p-md"></div>
+            </div>
+            <!-- Tutor -->
+            <div class="tab-panel" data-panel="tutor">
+              <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                  <div class="chat-message assistant">
+                    <i data-lucide="hand"></i> Hi! Ask me anything about this topic.
+                  </div>
+                </div>
+                <div class="chat-input-container">
+                  <input type="text" class="input" id="chat-input" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')sendChatMessage()">
+                  <button class="btn btn-primary" onclick="sendChatMessage()">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View: Notes -->
+      <div id="view-notes" class="view-container">
+        <header class="page-header flex justify-between items-center p-xl">
+          <div>
+            <h1 class="page-title"><i data-lucide="file-text"></i> Notes</h1>
+            <p class="text-muted" id="notes-count">Your learning notes</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('create-note-modal')"><i data-lucide="file-plus" class="mr-sm"></i> New Note</button>
+        </header>
+        <div class="page-content p-xl pt-0">
+          <div id="notes-list" class="grid grid-auto"></div>
+        </div>
+      </div>
+
+      <!-- View: Settings -->
+      <div id="view-settings" class="view-container">
+        <header class="page-header p-xl">
+          <h1 class="page-title"><i data-lucide="settings"></i> Settings</h1>
+          <p class="text-muted">Configure your AI provider and application settings</p>
+        </header>
+        <div class="page-content p-xl pt-0">
+          
+          <div class="settings-section">
+            <h3 class="settings-title"><i data-lucide="cpu" class="mr-sm"></i> AI Provider</h3>
+            <div class="provider-grid" id="provider-grid"></div>
+          </div>
+          
+          <div class="card mb-lg">
+            <div class="grid grid-2 gap-lg mb-md">
+              <div class="input-group">
+                <label class="input-label">API Key</label>
+                <input type="password" class="input" id="api-key" placeholder="Enter your API key">
+                <div class="text-xs text-muted mt-xs" id="api-key-hint">Required for cloud providers</div>
+              </div>
+              <div class="input-group">
+                <label class="input-label">Custom Endpoint</label>
+                <input type="text" class="input" id="api-endpoint" placeholder="Leave empty for default">
+              </div>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Model</label>
+              <div class="flex gap-sm">
+                <select class="select" id="model-select" style="flex:1;">
+                  <option value="">Select a model</option>
+                </select>
+                <button class="btn btn-secondary" onclick="fetchModels()"><i data-lucide="refresh-cw" class="mr-sm"></i> Refresh</button>
+              </div>
+            </div>
+            <div class="flex gap-sm mt-lg">
+              <button class="btn btn-primary" onclick="saveSettings()"><i data-lucide="save" class="mr-sm"></i> Save Settings</button>
+              <button class="btn btn-secondary" onclick="testConnection()"><i data-lucide="plug" class="mr-sm"></i> Test Connection</button>
+            </div>
+            <div id="connection-status" class="mt-md hidden"></div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-title"><i data-lucide="bar-chart-2" class="mr-sm"></i> System Info</h3>
+            <div class="grid grid-3 gap-md">
+              <div class="card stat-card">
+                <div class="stat-label text-sm text-muted">Database</div>
+                <div class="stat-val text-sm mt-xs" id="db-path">Loading...</div>
+              </div>
+              <div class="card stat-card">
+                <div class="stat-label text-sm text-muted">Status</div>
+                <div class="stat-val text-sm mt-xs" id="health-status">Loading...</div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Command Palette Modal -->
+  <div class="modal-overlay cmd-palette-overlay" id="command-palette">
+    <div class="cmd-palette">
+      <div class="cmd-input-wrapper">
+        <span class="cmd-icon"><i data-lucide="search" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i></span>
+        <input type="text" class="cmd-input" id="cmd-input" placeholder="Search topics, workspaces, notes or commands..." autocomplete="off">
+      </div>
+      <div class="cmd-results" id="cmd-results">
+        <!-- populated via js -->
+      </div>
+      <div class="cmd-footer flex justify-between text-xs text-muted">
+        <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+        <span><kbd>Enter</kbd> to select</span>
+        <span><kbd>Esc</kbd> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <!-- Create Workspace Modal -->
+  <div class="modal-overlay" id="create-workspace-modal">
+    <div class="modal">
+      <h3 class="modal-title">✨ Create Workspace</h3>
+      <div class="input-group mb-md">
+        <label class="input-label">Name</label>
+        <input type="text" class="input" id="ws-name" placeholder="e.g. Machine Learning Journey">
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Description</label>
+        <textarea class="textarea" id="ws-desc" placeholder="What's this workspace about?"></textarea>
+      </div>
+      <div class="grid grid-2 gap-md mb-md">
+        <div class="input-group">
+          <label class="input-label">Color</label>
+          <input type="color" class="input color-input" id="ws-color" value="#6366f1">
+        </div>
+        <div class="input-group">
+          <label class="input-label">Icon</label>
+          <select class="select" id="ws-icon">
+            <option value="book">Books</option>
+            <option value="microscope">Science</option>
+            <option value="monitor">Code</option>
+            <option value="brain">Brain</option>
+            <option value="globe">World</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('create-workspace-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="createWorkspace()">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workspace Selector Dropdown Overlay -->
+  <div class="modal-overlay ws-selector-overlay" id="ws-selector-modal" style="background: transparent; align-items: flex-start; justify-content: flex-start;">
+    <div class="ws-selector-menu" style="position: absolute; top: 60px; left: 16px;">
+      <div class="ws-list" id="ws-selector-list"></div>
+      <div class="ws-actions">
+        <button class="btn btn-ghost w-full text-left" onclick="closeModal('ws-selector-modal'); openModal('create-workspace-modal')">➕ Create New Workspace</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Note Modals -->
+  <div class="modal-overlay" id="create-note-modal">
+    <div class="modal">
+      <h3 class="modal-title"><i data-lucide="file-plus" class="mr-sm"></i> New Note</h3>
+      <div class="input-group mb-md">
+        <label class="input-label">Title</label>
+        <input type="text" class="input" id="note-title" placeholder="Note title">
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Content</label>
+        <textarea class="textarea" id="note-content" placeholder="Write your notes here..." style="min-height:200px;"></textarea>
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Tags</label>
+        <input type="text" class="input" id="note-tags" placeholder="e.g. AI, deep learning">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('create-note-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="createNote()">Save Note</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-overlay" id="edit-note-modal">
+    <div class="modal">
+      <h3 class="modal-title"><i data-lucide="edit" class="mr-sm"></i> Edit Note</h3>
+      <input type="hidden" id="edit-note-id">
+      <div class="input-group mb-md">
+        <label class="input-label">Title</label>
+        <input type="text" class="input" id="edit-note-title">
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Content</label>
+        <textarea class="textarea" id="edit-note-content" style="min-height:200px;"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('edit-note-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="updateNote()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept Detail Modal -->
+  <div class="modal-overlay" id="concept-modal">
+    <div class="modal" style="max-width:700px;">
+      <h3 class="modal-title" id="concept-modal-title"></h3>
+      <div id="concept-modal-body" class="mb-lg"></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('concept-modal')">Close</button>
+        <button class="btn btn-primary" id="expand-concept-btn" onclick="expandConcept()"><i data-lucide="search" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i> Deep Dive</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Load JS -->
+  <script src="/js/app.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/explore.js"></script>
+</body>
+</html>
