@@ -1,7 +1,7 @@
 {
   "src/ai/client.rs": {
-    "mtime": 1782473074550.124,
-    "hash": "9736920568272c7a7c58d618c1adab88"
+    "mtime": 1782570424515.3396,
+    "hash": "7f361183342ee9589855a0a3f2c4e66e"
   },
   "src/ai/json_utils.rs": {
     "mtime": 1782464922290.4485,
@@ -16,16 +16,16 @@
     "hash": "de0adb38b7b6a1a795312b5fead744c9"
   },
   "src/ai/services.rs": {
-    "mtime": 1782476068968.2559,
-    "hash": "399bfdec6fc4148c16cda74d72470dd9"
+    "mtime": 1782577934081.8853,
+    "hash": "536f099743ac02851fcdeddca7701ef0"
   },
   "src/db/mod.rs": {
     "mtime": 1782462233766.5378,
     "hash": "14137bcdb8afe9e062dd94a9099d05c0"
   },
   "src/db/models.rs": {
-    "mtime": 1782473074543.4653,
-    "hash": "5d54fab86db7075631f50d5891b3dcb4"
+    "mtime": 1782568571997.781,
+    "hash": "37979b141789c5d1bd39e7963dd1f1f1"
   },
   "src/db/schema.rs": {
     "mtime": 1782462258966.8098,
@@ -36,8 +36,8 @@
     "hash": "d6c320481f0b1cb321c9f96ebcda808a"
   },
   "src/routes/ai_routes.rs": {
-    "mtime": 1782473074547.2117,
-    "hash": "7c02508d661598e9f0de59c398c2c5e3"
+    "mtime": 1782577583771.8257,
+    "hash": "a2aa851690470143362efe2ca5195fff"
   },
   "src/routes/concepts.rs": {
     "mtime": 1782462554707.5845,
@@ -48,8 +48,8 @@
     "hash": "12df92bcfd140eaa2e9077e10e13c71a"
   },
   "src/routes/mod.rs": {
-    "mtime": 1782478195019.5713,
-    "hash": "6ca022a8eb4173b444c5182b1eedf8f5"
+    "mtime": 1782577091555.4048,
+    "hash": "c013a88204b59250480a49eff9b00720"
   },
   "src/routes/notes.rs": {
     "mtime": 1782462582956.808,
@@ -64,8 +64,8 @@
     "hash": "4795ea1b6d1483dbde66f33b0e27421b"
   },
   "src/routes/topics.rs": {
-    "mtime": 1782478186547.4219,
-    "hash": "d242ac6e7ed9932e75777e5f1e270b4e"
+    "mtime": 1782462512707.252,
+    "hash": "1dc5259e3db2eed7c14b8053a29318f5"
   },
   "src/routes/workspaces.rs": {
     "mtime": 1782462489567.0688,
@@ -76,27 +76,27 @@
     "hash": "7ce401ca1efa4d7430791b57b3c4444d"
   },
   "static/js/dashboard.js": {
-    "mtime": 1782479009334.6199,
-    "hash": "92822fc3e0a8718b4e993165fa6106a7"
+    "mtime": 1782462853306.5024,
+    "hash": "4b9729c5b4cf46458b02a359d5ae5c61"
   },
   "static/js/explore.js": {
-    "mtime": 1782475738627.4512,
-    "hash": "baaea9585d07f008c0542403f8419e33"
+    "mtime": 1782577101044.5156,
+    "hash": "e70da4eab025456de10c52fdfddd6938"
   },
   "static/explore.html": {
-    "mtime": 1782477858768.0737,
-    "hash": "a7ba7a2401e3c376c03ec7095c3e8f1e"
+    "mtime": 1782475215886.431,
+    "hash": "a924fdf3569759685d547dd99129fc72"
   },
   "static/index.html": {
-    "mtime": 1782481335855.514,
-    "hash": "8850ab32861b1aa40a6588d2cf8396e9"
+    "mtime": 1782462820933.1492,
+    "hash": "7501f6b4118d8657ef999833f4a71f6d"
   },
   "static/notes.html": {
     "mtime": 1782463011697.268,
     "hash": "f71e834cf156e46da6ba1de0eb04c3c3"
   },
   "static/settings.html": {
-    "mtime": 1782477878788.3862,
-    "hash": "6d74d08e71f909e2f4de929599715d66"
+    "mtime": 1782465361189.2363,
+    "hash": "55b4aac47c70e4fd0f0e3206f739a881"
   }
 }

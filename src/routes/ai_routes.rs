@@ -143,6 +143,11 @@ fn save_exploration_results(
         let id = Uuid::new_v4().to_string();
         let code_examples_json = serde_json::to_string(&concept.code_examples).unwrap_or_else(|_| "[]".into());
         let external_resources_json = serde_json::to_string(&concept.external_resources).unwrap_or_else(|_| "[]".into());
+        let details_str = if concept.details.is_string() {
+            concept.details.as_str().unwrap().to_string()
+        } else {
+            serde_json::to_string(&concept.details).unwrap_or_default()
+        };
         let depth = if parent_concept_id.is_some() { 1 } else { 0 };
 
         conn.execute(
@@ -150,7 +155,7 @@ fn save_exploration_results(
              VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
             rusqlite::params![
                 id, topic_id, concept.name, concept.r#type, concept.description,
-                concept.importance, concept.details, code_examples_json, external_resources_json,
+                concept.importance, details_str, code_examples_json, external_resources_json,
                 parent_concept_id, depth
             ],
         ).map_err(|e| format!("Failed to insert concept: {}", e))?;
@@ -320,6 +325,149 @@ pub async fn models(body: web::Json<ModelsRequest>) -> HttpResponse {
 
     match providers::fetch_models_from_provider(&body.provider, &api_key, &endpoint).await {
         Ok(models) => HttpResponse::Ok().json(models),
+        Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e})),
+    }
+}
+
+// ─── Pipeline Handlers ──────────────────────────────────────────────────
+
+#[derive(Deserialize)]
+pub struct PipelineRequest {
+    pub topic_id: String,
+    pub topic: String,
+    pub concept_names: Option<Vec<String>>,
+}
+
+pub async fn generate_concepts(pool: web::Data<Arc<DbPool>>, body: web::Json<PipelineRequest>) -> HttpResponse {
+    let pool_ref = pool.into_inner();
+    match services::generate_concepts_pipeline(&pool_ref, &body.topic).await {
+        Ok(concepts) => {
+            let conn = match pool_ref.get() {
+                Ok(c) => c,
+                Err(e) => return HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
+            };
+            for concept in &concepts {
+                let id = Uuid::new_v4().to_string();
+                let code_examples_json = serde_json::to_string(&concept.code_examples).unwrap_or_else(|_| "[]".into());
+                let external_resources_json = serde_json::to_string(&concept.external_resources).unwrap_or_else(|_| "[]".into());
+                let details_str = if concept.details.is_string() {
+                    concept.details.as_str().unwrap().to_string()
+                } else {
+                    serde_json::to_string(&concept.details).unwrap_or_default()
+                };
+                let _ = conn.execute(
+                    "INSERT INTO concepts (id, topic_id, name, type, description, importance, details, code_examples, external_resources, depth) \
+                     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
+                    rusqlite::params![
+                        id, body.topic_id, concept.name, concept.r#type, concept.description,
+                        concept.importance, details_str, code_examples_json, external_resources_json, 0
+                    ],
+                );
+            }
+            HttpResponse::Ok().json(serde_json::json!({"success": true, "concepts_count": concepts.len()}))
+        }
+        Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e})),
+    }
+}
+
+pub async fn generate_relationships(pool: web::Data<Arc<DbPool>>, body: web::Json<PipelineRequest>) -> HttpResponse {
+    let pool_ref = pool.into_inner();
+    let concept_names = body.concept_names.clone().unwrap_or_default();
+    match services::generate_relationships_pipeline(&pool_ref, &body.topic, &concept_names).await {
+        Ok(relationships) => {
+            let conn = match pool_ref.get() {
+                Ok(c) => c,
+                Err(e) => return HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
+            };
+            let mut concept_map = std::collections::HashMap::new();
+            if let Ok(mut stmt) = conn.prepare("SELECT id, name FROM concepts WHERE topic_id = ?1") {
+                if let Ok(rows) = stmt.query_map(rusqlite::params![body.topic_id], |row| {
+                    Ok((row.get::<_, String>(1)?.to_lowercase(), row.get::<_, String>(0)?))
+                }) {
+                    for row in rows.flatten() { concept_map.insert(row.0, row.1); }
+                }
+            }
+            let mut saved = 0;
+            for rel in &relationships {
+                if let (Some(src), Some(tgt)) = (concept_map.get(&rel.source.to_lowercase()), concept_map.get(&rel.target.to_lowercase())) {
+                    let id = Uuid::new_v4().to_string();
+                    let _ = conn.execute(
+                        "INSERT INTO relationships (id, topic_id, source_concept_id, target_concept_id, relationship_type, description, strength) \
+                         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+                        rusqlite::params![id, body.topic_id, src, tgt, rel.relationship_type, rel.description, rel.strength],
+                    );
+                    saved += 1;
+                }
+            }
+            HttpResponse::Ok().json(serde_json::json!({"success": true, "relationships_count": saved}))
+        }
+        Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e})),
+    }
+}
+
+pub async fn generate_flashcards(pool: web::Data<Arc<DbPool>>, body: web::Json<PipelineRequest>) -> HttpResponse {
+    let pool_ref = pool.into_inner();
+    match services::generate_flashcards_pipeline(&pool_ref, &body.topic).await {
+        Ok(flashcards) => {
+            let conn = match pool_ref.get() {
+                Ok(c) => c,
+                Err(e) => return HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
+            };
+            for fc in &flashcards {
+                let id = Uuid::new_v4().to_string();
+                let _ = conn.execute(
+                    "INSERT INTO flashcards (id, topic_id, question, answer, difficulty) VALUES (?1, ?2, ?3, ?4, ?5)",
+                    rusqlite::params![id, body.topic_id, fc.question, fc.answer, fc.difficulty],
+                );
+            }
+            HttpResponse::Ok().json(serde_json::json!({"success": true, "flashcards_count": flashcards.len()}))
+        }
+        Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e})),
+    }
+}
+
+pub async fn generate_timeline(pool: web::Data<Arc<DbPool>>, body: web::Json<PipelineRequest>) -> HttpResponse {
+    let pool_ref = pool.into_inner();
+    match services::generate_timeline_pipeline(&pool_ref, &body.topic).await {
+        Ok(timeline) => {
+            let conn = match pool_ref.get() {
+                Ok(c) => c,
+                Err(e) => return HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
+            };
+            for (i, event) in timeline.iter().enumerate() {
+                let id = Uuid::new_v4().to_string();
+                let _ = conn.execute(
+                    "INSERT INTO timeline_events (id, topic_id, title, description, date_label, period, order_index, importance, category) \
+                     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+                    rusqlite::params![id, body.topic_id, event.title, event.description, event.date_label, event.period, event.order_index.max(i as i32), event.importance, event.category],
+                );
+            }
+            HttpResponse::Ok().json(serde_json::json!({"success": true, "timeline_count": timeline.len()}))
+        }
+        Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e})),
+    }
+}
+
+pub async fn generate_learning_path(pool: web::Data<Arc<DbPool>>, body: web::Json<PipelineRequest>) -> HttpResponse {
+    let pool_ref = pool.into_inner();
+    match services::generate_learning_path_pipeline(&pool_ref, &body.topic).await {
+        Ok(lp) => {
+            let conn = match pool_ref.get() {
+                Ok(c) => c,
+                Err(e) => return HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
+            };
+            
+            let id = Uuid::new_v4().to_string();
+            let steps_json = serde_json::to_string(&lp.steps).unwrap_or_else(|_| "[]".into());
+            
+            let _ = conn.execute(
+                "INSERT INTO learning_paths (id, topic_id, title, description, steps, difficulty, estimated_time) \
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+                rusqlite::params![id, body.topic_id, lp.title, lp.description, steps_json, lp.difficulty, lp.estimated_time],
+            );
+            
+            HttpResponse::Ok().json(serde_json::json!({"success": true}))
+        }
         Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e})),
     }
 }

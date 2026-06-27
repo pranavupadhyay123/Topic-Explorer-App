@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Topic Explorer</title>
+  <meta name="description" content="Configure AI providers, models, and application settings">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <a href="/" class="app-logo">
+        <span class="logo-icon">🧠</span>
+        <span>Topic Explorer</span>
+      </a>
+      <nav class="app-nav">
+        <a href="/" class="nav-link">🏠 Dashboard</a>
+        <a href="/notes.html" class="nav-link">📝 Notes</a>
+        <a href="/settings.html" class="nav-link active">⚙️ Settings</a>
+      </nav>
+    </header>
+
+    <div class="section-header">
+      <div>
+        <h1 class="section-title">⚙️ Settings</h1>
+        <p class="section-subtitle">Configure your AI provider and model</p>
+      </div>
+    </div>
+
+    <!-- Provider Selection -->
+    <div class="settings-section">
+      <div class="settings-section-title">🤖 AI Provider</div>
+      <div class="provider-grid" id="provider-grid">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+
+    <!-- API Key & Model -->
+    <div class="card mb-lg" id="config-card">
+      <div class="grid grid-2 gap-lg">
+        <div class="input-group">
+          <label class="input-label">API Key</label>
+          <input type="password" class="input" id="api-key" placeholder="Enter your API key">
+          <div class="text-xs text-muted mt-sm" id="api-key-hint">Required for cloud providers</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Custom Endpoint (optional)</label>
+          <input type="text" class="input" id="api-endpoint" placeholder="Leave empty for default">
+        </div>
+      </div>
+
+      <div class="input-group mt-lg">
+        <label class="input-label">Model</label>
+        <div class="flex gap-sm">
+          <select class="select" id="model-select" style="flex:1;">
+            <option value="">Select a model</option>
+          </select>
+          <button class="btn btn-secondary" onclick="fetchModels()">🔄 Refresh Models</button>
+        </div>
+      </div>
+
+      <div class="flex gap-sm mt-lg">
+        <button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button>
+        <button class="btn btn-secondary" onclick="testConnection()">🔌 Test Connection</button>
+      </div>
+
+      <div id="connection-status" class="mt-md hidden"></div>
+    </div>
+
+    <!-- System Info -->
+    <div class="card">
+      <div class="settings-section-title">📊 System Info</div>
+      <div class="grid grid-3 gap-md" id="system-info">
+        <div class="stat-card card">
+          <div class="stat-label">Database</div>
+          <div class="text-sm text-secondary mt-sm" id="db-path">Loading...</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-label">Status</div>
+          <div class="text-sm mt-sm" id="health-status">Loading...</div>
+        </div>
+        <div class="stat-card card">
+          <div class="stat-label">Version</div>
+          <div class="text-sm text-secondary mt-sm">Rust Edition 🦀</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    const PROVIDERS = [
+      { id: 'ollama', name: 'Ollama', icon: '🦙', desc: 'Run models locally', keyRequired: false },
+      { id: 'openai', name: 'OpenAI', icon: '🟢', desc: 'GPT-4o, GPT-4', keyRequired: true },
+      { id: 'anthropic', name: 'Anthropic', icon: '🟠', desc: 'Claude 3.5, Claude 3', keyRequired: true },
+      { id: 'groq', name: 'Groq', icon: '⚡', desc: 'Ultra-fast inference', keyRequired: true },
+      { id: 'mistral', name: 'Mistral AI', icon: '🔵', desc: 'Mistral, Mixtral', keyRequired: true },
+      { id: 'together', name: 'Together AI', icon: '🤝', desc: 'Open-source models', keyRequired: true },
+      { id: 'openrouter', name: 'OpenRouter', icon: '🌐', desc: 'Access any model', keyRequired: true },
+      { id: 'lmstudio', name: 'LM Studio', icon: '💻', desc: 'Local LM Studio', keyRequired: false },
+      { id: 'deepseek', name: 'DeepSeek', icon: '🔍', desc: 'DeepSeek models', keyRequired: true },
+      { id: 'nvidia', name: 'NVIDIA', icon: '🟩', desc: 'NIM API (Llama 3, etc.)', keyRequired: true },
+    ];
+
+    let currentProvider = 'ollama';
+    let settings = {};
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProviders();
+      loadSettings();
+      loadHealth();
+    });
+
+    function renderProviders() {
+      const grid = document.getElementById('provider-grid');
+      grid.innerHTML = PROVIDERS.map(p => `
+        <div class="provider-card ${p.id === currentProvider ? 'selected' : ''}" id="provider-${p.id}" onclick="selectProvider('${p.id}')">
+          <div style="font-size:1.5rem;margin-bottom:4px;">${p.icon}</div>
+          <div class="provider-card-name">${p.name}</div>
+          <div class="provider-card-desc">${p.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectProvider(id) {
+      currentProvider = id;
+      document.querySelectorAll('.provider-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById(`provider-${id}`).classList.add('selected');
+
+      const provider = PROVIDERS.find(p => p.id === id);
+      const hint = document.getElementById('api-key-hint');
+      hint.textContent = provider.keyRequired ? 'Required for this provider' : 'Not required for local providers';
+
+      // Show loading and automatically fetch models for the selected provider
+      document.getElementById('model-select').innerHTML = '<option value="">⏳ Loading models...</option>';
+      fetchModels();
+    }
+
+    async function loadSettings() {
+      try {
+        settings = await API.get('/api/settings');
+        currentProvider = settings.ai_provider || 'ollama';
+        document.getElementById('api-key').value = settings.api_key || '';
+        document.getElementById('api-endpoint').value = settings.api_endpoint || '';
+
+        // Update provider selection
+        renderProviders();
+
+        // Fetch models
+        fetchModels();
+      } catch (err) {
+        showToast('Failed to load settings', 'error');
+      }
+    }
+
+    async function fetchModels() {
+      const select = document.getElementById('model-select');
+      const savedModel = settings.ai_model;
+
+      try {
+        const models = await API.post('/api/ai/models', {
+          provider: currentProvider,
+          api_key: document.getElementById('api-key').value,
+          endpoint: document.getElementById('api-endpoint').value,
+        });
+
+        if (models.length === 0) {
+          select.innerHTML = '<option value="">No models found</option>';
+          return;
+        }
+
+        // Check if savedModel exists in this provider's list
+        const modelExists = models.some(m => m.id === savedModel);
+        const targetModel = (modelExists || select.value) ? (select.value || savedModel) : models[0].id;
+
+        select.innerHTML = models.map(m =>
+          `<option value="${esc(m.id)}" ${m.id === targetModel ? 'selected' : ''}>${esc(m.name)}</option>`
+        ).join('');
+      } catch (err) {
+        select.innerHTML = '<option value="">Error loading models</option>';
+        showToast('Failed to fetch models: ' + err.message, 'error');
+      }
+    }
+
+    async function saveSettings() {
+      const selectedModel = document.getElementById('model-select').value;
+      if (!selectedModel) {
+        showToast('Please select a valid model first!', 'warning');
+        return;
+      }
+      try {
+        await API.put('/api/settings', {
+          ai_provider: currentProvider,
+          ai_model: selectedModel,
+          api_key: document.getElementById('api-key').value,
+          api_endpoint: document.getElementById('api-endpoint').value,
+        });
+        settings.ai_provider = currentProvider;
+        settings.ai_model = selectedModel;
+        settings.api_key = document.getElementById('api-key').value;
+        settings.api_endpoint = document.getElementById('api-endpoint').value;
+        showToast('Settings saved successfully! 🎉', 'success');
+      } catch (err) {
+        showToast('Failed to save settings', 'error');
+      }
+    }
+
+    async function testConnection() {
+      const statusDiv = document.getElementById('connection-status');
+      statusDiv.classList.remove('hidden');
+      statusDiv.innerHTML = '<div class="flex items-center gap-sm"><div class="spinner"></div> Testing connection...</div>';
+
+      try {
+        const models = await API.post('/api/ai/models', {
+          provider: currentProvider,
+          api_key: document.getElementById('api-key').value,
+          endpoint: document.getElementById('api-endpoint').value,
+        });
+
+        if (models.length > 0) {
+          statusDiv.innerHTML = `<div class="badge badge-success">✅ Connected! Found ${models.length} models.</div>`;
+        } else {
+          statusDiv.innerHTML = '<div class="badge badge-warning">⚠️ Connected but no models found.</div>';
+        }
+      } catch (err) {
+        statusDiv.innerHTML = `<div class="badge badge-error">❌ Connection failed: ${esc(err.message)}</div>`;
+      }
+    }
+
+    async function loadHealth() {
+      try {
+        const health = await API.get('/api/health');
+        document.getElementById('db-path').textContent = health.workspace || 'Unknown';
+        document.getElementById('health-status').innerHTML =
+          health.status === 'ok'
+            ? '<span class="badge badge-success">✅ Healthy</span>'
+            : '<span class="badge badge-error">❌ Error</span>';
+      } catch {
+        document.getElementById('health-status').innerHTML = '<span class="badge badge-error">❌ Unreachable</span>';
+      }
+    }
+  </script>
+</body>
+</html>

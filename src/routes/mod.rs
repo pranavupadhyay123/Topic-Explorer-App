@@ -23,7 +23,6 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
             // Topics
             .route("/topics", web::get().to(topics::list_topics))
             .route("/topics", web::post().to(topics::create_topic))
-            .route("/topics", web::put().to(topics::update_topic_workspace))
             .route("/topics", web::delete().to(topics::delete_topic))
             // Concepts
             .route("/concepts", web::get().to(concepts::list_concepts))
@@ -45,6 +44,13 @@ pub fn configure(cfg: &mut web::ServiceConfig) {
             .route("/ai/explain", web::post().to(ai_routes::explain))
             .route("/ai/quiz", web::post().to(ai_routes::quiz))
             .route("/ai/tutor", web::post().to(ai_routes::tutor))
-            .route("/ai/models", web::post().to(ai_routes::models)),
+            .route("/ai/models", web::post().to(ai_routes::models))
+            
+            // Pipeline routes
+            .route("/ai/generate_concepts", web::post().to(ai_routes::generate_concepts))
+            .route("/ai/generate_relationships", web::post().to(ai_routes::generate_relationships))
+            .route("/ai/generate_flashcards", web::post().to(ai_routes::generate_flashcards))
+            .route("/ai/generate_timeline", web::post().to(ai_routes::generate_timeline))
+            .route("/ai/generate_learning_path", web::post().to(ai_routes::generate_learning_path)),
     );
 }

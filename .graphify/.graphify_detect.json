@@ -34,9 +34,9 @@
     "video": []
   },
   "total_files": 25,
-  "total_words": 15795,
+  "total_words": 16659,
   "needs_graph": false,
-  "warning": "Corpus is ~15,795 words - fits in a single context window. You may not need a graph.",
+  "warning": "Corpus is ~16,659 words - fits in a single context window. You may not need a graph.",
   "skipped_sensitive": [],
   "graphifyignore_patterns": 0,
   "scope": {

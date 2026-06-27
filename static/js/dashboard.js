@@ -1,139 +1,155 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   Topic Explorer — Dashboard & Sidebar Data Management
+   Dashboard Page Logic
    ═══════════════════════════════════════════════════════════════════════════ */
 
 let workspaces = [];
 let topics = [];
-let currentWorkspaceId = null;
-
-const emojiToLucide = {
-  '🧠': 'brain', '💻': 'monitor', '📚': 'book', '🚀': 'rocket', '⚙️': 'settings', 
-  '🧪': 'flask-conical', '🔬': 'microscope', '🌍': 'globe', '⚛️': 'atom', '🏛️': 'landmark',
-  'W': 'folder'
-};
-
-function renderWsIcon(icon) {
-  if (!icon) return '<i data-lucide="folder"></i>';
-  if (emojiToLucide[icon]) return `<i data-lucide="${emojiToLucide[icon]}"></i>`;
-  if (/^[a-zA-Z-]+$/.test(icon)) return `<i data-lucide="${icon}"></i>`;
-  return '<i data-lucide="folder"></i>';
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Try to load last selected workspace from localStorage
-  const savedWsId = localStorage.getItem('last_workspace_id');
-  if (savedWsId) {
-    currentWorkspaceId = savedWsId;
-  }
-  
   loadWorkspaces();
-  navigate('dashboard'); // Initial view
+  loadTopics();
+
+  // Enter key to explore
+  document.getElementById('explore-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') quickExplore();
+  });
 });
 
-// ─── Workspaces ────────────────────────────────────────────────────────────
+// ─── Load Workspaces ───────────────────────────────────────────────────────
 
 async function loadWorkspaces() {
+  const grid = document.getElementById('workspaces-grid');
+
   try {
     workspaces = await API.get('/api/workspaces');
-    
-    // Automatically select first workspace if none selected
-    if (!currentWorkspaceId && workspaces.length > 0) {
-      currentWorkspaceId = workspaces[0].id;
-    }
-    
-    renderWorkspacesGrid();
-    renderSidebarWorkspaceInfo();
-  if(typeof refreshIcons==='function') refreshIcons();
-    renderWorkspaceSelector();
-    
-    // Load topics for current workspace
-    loadTopics();
+    renderWorkspaces();
+    updateWorkspaceFilter();
+    updateTopicWorkspaceSelect();
   } catch (err) {
     showToast('Failed to load workspaces', 'error');
   }
 }
 
-function renderWorkspacesGrid() {
+function renderWorkspaces() {
   const grid = document.getElementById('workspaces-grid');
-  if (!grid) return;
 
   if (workspaces.length === 0) {
     grid.innerHTML = `
-      <div class="card workspace-card text-center" onclick="openModal('create-workspace-modal')" style="border-style:dashed;">
-        <div style="margin-bottom:8px; display:flex; justify-content:center;"><i data-lucide="folder-plus" style="width:32px;height:32px;"></i></div>
-        <div class="card-title">Create Your First Workspace</div>
-        <div class="card-desc">Organize topics into focused learning areas</div>
+      <div class="card card-clickable animate-in" onclick="openModal('create-workspace-modal')" style="border-style:dashed;">
+        <div class="text-center">
+          <div style="font-size:2rem;margin-bottom:8px;">✨</div>
+          <div class="card-title">Create Your First Workspace</div>
+          <div class="card-desc">Organize topics into focused learning areas</div>
+        </div>
       </div>
     `;
     return;
   }
 
   grid.innerHTML = workspaces.map((ws, i) => `
-    <div class="card workspace-card" onclick="selectWorkspace('${esc(ws.id)}')" style="animation-delay:${i * 0.05}s; ${ws.id === currentWorkspaceId ? 'border-color: var(--primary);' : ''}">
-      <div style="margin-bottom: var(--space-sm); display:flex;">${renderWsIcon(ws.icon)}</div>
+    <div class="card workspace-card card-clickable animate-in" onclick="filterByWorkspace('${esc(ws.id)}')" style="animation-delay:${i * 0.05}s">
+      <div class="workspace-color-bar" style="background:${esc(ws.color)}"></div>
+      <div class="workspace-icon">${esc(ws.icon)}</div>
       <div class="card-title">${esc(ws.name)}</div>
       <div class="card-desc">${esc(ws.description) || 'No description'}</div>
-      <div class="flex justify-between items-center mt-md">
-        <span class="text-xs text-muted">${timeAgo(ws.created_at)}</span>
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); deleteWorkspace('${esc(ws.id)}')"><i data-lucide="trash-2" style="width:16px;height:16px;"></i></button>
+      <div class="card-meta">
+        <span>${timeAgo(ws.created_at)}</span>
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); deleteWorkspace('${esc(ws.id)}')">🗑️</button>
       </div>
     </div>
   `).join('');
 }
 
-function renderSidebarWorkspaceInfo() {
-  const ws = workspaces.find(w => w.id === currentWorkspaceId);
-  const nameEl = document.getElementById('sidebar-workspace-name');
-  const avatarEl = document.getElementById('current-workspace-avatar');
-  
-  if (ws) {
-    nameEl.innerHTML = `${esc(ws.name)} <span class="text-xs text-muted">▼</span>`;
-    avatarEl.innerHTML = renderWsIcon(ws.icon);
-    avatarEl.style.background = ws.color || 'var(--primary)';
-  } else {
-    nameEl.innerHTML = `Select Workspace <span class="text-xs text-muted">▼</span>`;
-    avatarEl.innerHTML = renderWsIcon('W');
-    avatarEl.style.background = 'var(--bg-elevated)';
+function updateWorkspaceFilter() {
+  const select = document.getElementById('workspace-filter');
+  select.innerHTML = '<option value="">All Workspaces</option>' +
+    workspaces.map(ws => `<option value="${esc(ws.id)}">${esc(ws.icon)} ${esc(ws.name)}</option>`).join('');
+}
+
+function updateTopicWorkspaceSelect() {
+  const select = document.getElementById('topic-workspace');
+  if (!select) return;
+  select.innerHTML = '<option value="">No Workspace</option>' +
+    workspaces.map(ws => `<option value="${esc(ws.id)}">${esc(ws.icon)} ${esc(ws.name)}</option>`).join('');
+}
+
+// ─── Load Topics ───────────────────────────────────────────────────────────
+
+async function loadTopics() {
+  const grid = document.getElementById('topics-grid');
+  const filter = document.getElementById('workspace-filter').value;
+
+  try {
+    const url = filter ? `/api/topics?workspace_id=${filter}` : '/api/topics';
+    topics = await API.get(url);
+    renderTopics();
+  } catch (err) {
+    showToast('Failed to load topics', 'error');
   }
 }
 
-function handleWorkspaceClick(e) {
-  const sidebar = document.getElementById('app-sidebar');
-  if (sidebar && sidebar.classList.contains('collapsed') && window.innerWidth > 991) {
-    if (typeof toggleSidebar === 'function') toggleSidebar(e);
-  } else {
-    openWorkspaceSelector();
+function renderTopics() {
+  const grid = document.getElementById('topics-grid');
+  const subtitle = document.getElementById('topics-subtitle');
+
+  subtitle.textContent = `${topics.length} topic${topics.length !== 1 ? 's' : ''}`;
+
+  if (topics.length === 0) {
+    showEmpty(grid, '🔍', 'No topics yet', 'Type a topic above and hit Explore to get started!');
+    return;
   }
+
+  grid.innerHTML = topics.map((t, i) => {
+    const statusBadge = t.status === 'explored'
+      ? '<span class="badge badge-success">✓ Explored</span>'
+      : '<span class="badge badge-warning">Pending</span>';
+
+    const wsInfo = t.workspace_name
+      ? `<span style="color:${esc(t.workspace_color)}">${esc(t.workspace_icon)} ${esc(t.workspace_name)}</span>`
+      : '';
+
+    return `
+      <div class="card card-clickable animate-in" onclick="openTopic('${esc(t.id)}')" style="animation-delay:${i * 0.05}s">
+        <div class="flex justify-between items-center mb-sm">
+          <div class="card-title">${esc(t.title)}</div>
+          ${statusBadge}
+        </div>
+        <div class="card-desc">${esc(t.description) || 'No description'}</div>
+        <div class="card-meta">
+          ${wsInfo}
+          <span>${timeAgo(t.created_at)}</span>
+          <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); deleteTopic('${esc(t.id)}')">🗑️</button>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
-function openWorkspaceSelector() {
-  openModal('ws-selector-modal');
-}
+// ─── Actions ───────────────────────────────────────────────────────────────
 
-function renderWorkspaceSelector() {
-  const list = document.getElementById('ws-selector-list');
-  if (!list) return;
-  
-  list.innerHTML = workspaces.map(ws => `
-    <div class="ws-item" onclick="selectWorkspace('${esc(ws.id)}'); closeModal('ws-selector-modal')">
-      <span style="display:flex;align-items:center;">${renderWsIcon(ws.icon)}</span>
-      <span>${esc(ws.name)}</span>
-      ${ws.id === currentWorkspaceId ? '<span style="margin-left:auto; color:var(--primary); display:flex;"><i data-lucide="check" style="width:16px;height:16px;"></i></span>' : ''}
-    </div>
-  `).join('');
-}
+async function quickExplore() {
+  const input = document.getElementById('explore-input');
+  const topic = input.value.trim();
+  if (!topic) {
+    showToast('Please enter a topic to explore', 'error');
+    return;
+  }
 
-function selectWorkspace(id) {
-  currentWorkspaceId = id;
-  localStorage.setItem('last_workspace_id', id);
-  
-  renderSidebarWorkspaceInfo();
-  if(typeof refreshIcons==='function') refreshIcons();
-  renderWorkspacesGrid();
-  renderWorkspaceSelector();
-  
-  loadTopics();
+  const btn = document.getElementById('explore-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Creating...';
+
+  try {
+    const result = await API.post('/api/topics', { title: topic });
+    showToast(`Topic "${topic}" created!`, 'success');
+    input.value = '';
+    window.location.href = `/explore.html?id=${result.id}&title=${encodeURIComponent(topic)}`;
+  } catch (err) {
+    showToast('Failed to create topic: ' + err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🚀 Explore';
+  }
 }
 
 async function createWorkspace() {
@@ -144,120 +160,72 @@ async function createWorkspace() {
   }
 
   try {
-    const ws = await API.post('/api/workspaces', {
+    await API.post('/api/workspaces', {
       name,
       description: document.getElementById('ws-desc').value.trim(),
       color: document.getElementById('ws-color').value,
       icon: document.getElementById('ws-icon').value,
     });
-    
     showToast(`Workspace "${name}" created!`, 'success');
     closeModal('create-workspace-modal');
-    
-    // Clear inputs
     document.getElementById('ws-name').value = '';
     document.getElementById('ws-desc').value = '';
-    
-    selectWorkspace(ws.id);
     loadWorkspaces();
   } catch (err) {
     showToast('Failed to create workspace', 'error');
   }
 }
 
+async function createTopic() {
+  const title = document.getElementById('topic-title').value.trim();
+  if (!title) {
+    showToast('Please enter a topic', 'error');
+    return;
+  }
+
+  try {
+    const result = await API.post('/api/topics', {
+      title,
+      workspace_id: document.getElementById('topic-workspace').value || null,
+      description: document.getElementById('topic-desc').value.trim(),
+    });
+    showToast(`Topic "${title}" created!`, 'success');
+    closeModal('create-topic-modal');
+    window.location.href = `/explore.html?id=${result.id}&title=${encodeURIComponent(title)}`;
+  } catch (err) {
+    showToast('Failed to create topic', 'error');
+  }
+}
+
+async function deleteTopic(id) {
+  if (!await confirmAction('Delete this topic and all its data?')) return;
+  try {
+    await API.del(`/api/topics?id=${id}`);
+    showToast('Topic deleted', 'success');
+    loadTopics();
+  } catch (err) {
+    showToast('Failed to delete topic', 'error');
+  }
+}
+
 async function deleteWorkspace(id) {
-  if (!window.confirm('Delete this workspace?')) return;
+  if (!await confirmAction('Delete this workspace? Topics will be kept but unassigned.')) return;
   try {
     await API.del(`/api/workspaces?id=${id}`);
     showToast('Workspace deleted', 'success');
-    if (currentWorkspaceId === id) {
-      currentWorkspaceId = null;
-      localStorage.removeItem('last_workspace_id');
-    }
     loadWorkspaces();
+    loadTopics();
   } catch (err) {
     showToast('Failed to delete workspace', 'error');
   }
 }
 
-// ─── Topics ────────────────────────────────────────────────────────────────
-
-async function loadTopics() {
-  try {
-    const url = currentWorkspaceId ? `/api/topics?workspace_id=${currentWorkspaceId}` : '/api/topics';
-    topics = await API.get(url);
-    renderSidebarTopics();
-  } catch (err) {
-    showToast('Failed to load topics', 'error');
-  }
-}
-
-function renderSidebarTopics() {
-  const list = document.getElementById('sidebar-topics-list');
-  if (!list) return;
-
-  if (topics.length === 0) {
-    list.innerHTML = `<div class="text-xs text-muted text-center mt-md p-md">No topics yet.<br>Explore something to begin!</div>`;
-    return;
-  }
-
-  list.innerHTML = topics.map(t => `
-    <div class="topic-item" onclick="openTopic('${esc(t.id)}')">
-      <span class="topic-icon"><i data-lucide="file-text" style="width:16px;height:16px;"></i></span>
-      <span class="topic-title-sidebar">${esc(t.title)}</span>
-    </div>
-  `).join('');
-}
-
-async function quickExploreLanding() {
-  const input = document.getElementById('landing-explore-input');
-  const topic = input.value.trim();
-  if (!topic) return;
-  
-  await createAndExploreTopic(topic);
-}
-
-function exploreSuggestion(topic) {
-  createAndExploreTopic(topic);
-}
-
-async function createAndExploreTopic(title) {
-  try {
-    const result = await API.post('/api/topics', { 
-      title: title,
-      workspace_id: currentWorkspaceId || null
-    });
-    
-    showToast(`Topic created!`, 'success');
-    document.getElementById('landing-explore-input').value = '';
-    
-    // Reload topics to update sidebar
-    await loadTopics();
-    
-    // Navigate to explore view
-    navigate('explore', { topicId: result.id });
-    
-  } catch (err) {
-    showToast('Failed to create topic: ' + err.message, 'error');
-  }
+function filterByWorkspace(id) {
+  document.getElementById('workspace-filter').value = id;
+  loadTopics();
 }
 
 function openTopic(id) {
-  navigate('explore', { topicId: id });
-}
-
-async function deleteCurrentTopic() {
-  const topicId = window.currentTopicData?.id;
-  if (!topicId) return;
-  
-  if (!window.confirm('Delete this topic?')) return;
-  
-  try {
-    await API.del(`/api/topics?id=${topicId}`);
-    showToast('Topic deleted', 'success');
-    navigate('dashboard');
-    loadTopics();
-  } catch (err) {
-    showToast('Failed to delete topic', 'error');
-  }
+  const topic = topics.find(t => t.id === id);
+  window.location.href = `/explore.html?id=${id}&title=${encodeURIComponent(topic?.title || '')}`;
 }

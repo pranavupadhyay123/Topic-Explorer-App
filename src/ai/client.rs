@@ -2,7 +2,19 @@ use crate::ai::providers;
 use crate::db::DbPool;
 use log::{error, info};
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
+use std::sync::{Arc, OnceLock};
+
+/// Shared HTTP Client for connection pooling (Massive speed boost)
+pub fn http_client() -> &'static reqwest::Client {
+    static CLIENT: OnceLock<reqwest::Client> = OnceLock::new();
+    CLIENT.get_or_init(|| {
+        reqwest::Client::builder()
+            .pool_idle_timeout(std::time::Duration::from_secs(90))
+            .timeout(std::time::Duration::from_secs(300))
+            .build()
+            .unwrap_or_else(|_| reqwest::Client::new())
+    })
+}
 
 /// AI configuration loaded from the database
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -62,7 +74,7 @@ pub async fn call_openai_compatible(
         "max_tokens": 4096,
     });
 
-    let client = reqwest::Client::new();
+    let client = http_client(); // Use shared client
     let mut req = client.post(&url).json(&body);
     if !api_key.is_empty() {
         req = req.header("Authorization", format!("Bearer {}", api_key));
@@ -71,7 +83,6 @@ pub async fn call_openai_compatible(
     info!("Calling OpenAI-compatible API: {} with model {}", url, model);
 
     let resp = req
-        .timeout(std::time::Duration::from_secs(120))
         .send()
         .await
         .map_err(|e| format!("API request failed: {}", e))?;
@@ -105,7 +116,6 @@ pub async fn call_anthropic(
 ) -> Result<String, String> {
     let url = "https://api.anthropic.com/v1/messages";
 
-    // Separate system message from user/assistant messages
     let system_msg = messages
         .iter()
         .find(|m| m.role == "system")
@@ -133,14 +143,13 @@ pub async fn call_anthropic(
         body["system"] = serde_json::Value::String(system_msg);
     }
 
-    let client = reqwest::Client::new();
+    let client = http_client(); // Use shared client
     let resp = client
         .post(url)
         .header("x-api-key", api_key)
         .header("anthropic-version", "2023-06-01")
         .header("content-type", "application/json")
         .json(&body)
-        .timeout(std::time::Duration::from_secs(120))
         .send()
         .await
         .map_err(|e| format!("Anthropic request failed: {}", e))?;

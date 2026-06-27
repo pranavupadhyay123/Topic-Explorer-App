@@ -26,7 +26,7 @@
       "20": "Community 20"
     }
   },
-  "topology_signature": "n=187;e=212;ai_client,ai_client_aiconfig,ai_client_call_ai,ai_client_call_anthropic,ai_client_call_openai_compatible,ai_client_chatmessage,ai_client_get_ai_config,ai_json_utils,ai_json_utils_attempt_fix_quotes,ai_json_utils_extract_json,ai_json_utils_extract_json_array,ai_json_utils_regex_lite_replace,ai_json_utils_safe_parse_json,ai_json_utils_sanitize_ai_json,ai_json_utils_strip_code_fences,ai_mod,ai_providers,ai_providers_fetch_models_from_provider,ai_providers_fetch_ollama_models,ai_providers_get_all_providers,ai_providers_get_provider,ai_providers_modelinfo,ai_providers_providerconfig,ai_providers_test_provider_connection,ai_services,ai_services_expand_concept,ai_services_explore_topic,ai_services_generate_quiz,ai_services_get_layered_explanation,ai_services_tutor_chat,db_mod,db_mod_get_db_path,db_mod_get_workspace_dir,db_mod_init_db,db_models,db_models_aiexplorationresult,db_models_appsettings,db_models_bookmark,db_models_chatmessage,db_models_concept,db_models_conceptinput,db_models_conversation,db_models_default_card_type,db_models_default_category,db_models_default_color,db_models_default_concept_type,db_models_default_convo_title,db_models_default_difficulty,db_models_default_event_importance,db_models_default_icon,db_models_default_importance,db_models_default_json_array,db_models_default_lp_difficulty,db_models_default_model,db_models_default_note_title,db_models_default_provider,db_models_default_rel_type,db_models_default_status,db_models_default_theme,db_models_flashcard,db_models_flashcardinput,db_models_knowledgecard,db_models_learningpath,db_models_learningpathinput,db_models_learningstepinput,db_models_note,db_models_quizquestion,db_models_relationship,db_models_relationshipinput,db_models_timelineevent,db_models_timelineeventinput,db_models_topic,db_models_topicwithworkspace,db_models_workspace,db_schema,db_schema_create_tables,js_app,js_app_api,js_app_closemodal,js_app_confirmaction,js_app_esc,js_app_formatdate,js_app_geturlparam,js_app_inittabs,js_app_openmodal,js_app_showempty,js_app_showloading,js_app_showtoast,js_app_timeago,js_dashboard,js_dashboard_createtopic,js_dashboard_createworkspace,js_dashboard_deletetopic,js_dashboard_deleteworkspace,js_dashboard_filterbyworkspace,js_dashboard_loadtopics,js_dashboard_loadworkspaces,js_dashboard_movetopic,js_dashboard_opentopic,js_dashboard_openworkspaceview,js_dashboard_quickexplore,js_dashboard_rendertopics,js_dashboard_renderworkspaces,js_dashboard_showworkspacesview,js_dashboard_topics,js_dashboard_updatetopicworkspaceselect,js_dashboard_updateworkspacefilter,js_dashboard_workspaces,js_explore,js_explore_answerquiz,js_explore_buildstricttree,js_explore_data,js_explore_expandconcept,js_explore_loadtopicdata,js_explore_nextflashcard,js_explore_prevflashcard,js_explore_quizquestions,js_explore_rel_colors,js_explore_renderall,js_explore_renderconcepts,js_explore_rendercurrentflashcard,js_explore_renderflashcards,js_explore_rendergraph,js_explore_renderlearningpaths,js_explore_renderquizquestion,js_explore_rendertimeline,js_explore_rendertree,js_explore_sendchatmessage,js_explore_showconceptdetail,js_explore_startexploration,js_explore_startquiz,js_explore_type_colors,js_explore_type_icons,routes_ai_routes,routes_ai_routes_expandrequest,routes_ai_routes_explain,routes_ai_routes_explainrequest,routes_ai_routes_explore,routes_ai_routes_explorerequest,routes_ai_routes_models,routes_ai_routes_modelsrequest,routes_ai_routes_quiz,routes_ai_routes_quizrequest,routes_ai_routes_save_exploration_results,routes_ai_routes_tutor,routes_ai_routes_tutorrequest,routes_concepts,routes_concepts_create_concept,routes_concepts_createconcept,routes_concepts_delete_concept,routes_concepts_list_concepts,routes_concepts_update_concept,routes_concepts_updateconcept,routes_health,routes_health_health_check,routes_mod,routes_mod_configure,routes_notes,routes_notes_create_note,routes_notes_createnote,routes_notes_delete_note,routes_notes_list_notes,routes_notes_update_note,routes_notes_updatenote,routes_search,routes_search_search,routes_settings,routes_settings_get_settings,routes_settings_update_settings,routes_settings_updatesettings,routes_topics,routes_topics_create_topic,routes_topics_createtopic,routes_topics_delete_topic,routes_topics_list_topics,routes_topics_update_topic_workspace,routes_topics_updatetopicworkspace,routes_workspaces,routes_workspaces_create_workspace,routes_workspaces_createworkspace,routes_workspaces_delete_workspace,routes_workspaces_deletequery,routes_workspaces_list_workspaces,routes_workspaces_update_workspace,routes_workspaces_updateworkspace,src_main,src_main_main|ai_client\tai_client_aiconfig\tcontains;ai_client\tai_client_call_ai\tcontains;ai_client\tai_client_call_anthropic\tcontains;ai_client\tai_client_call_openai_compatible\tcontains;ai_client\tai_client_chatmessage\tcontains;ai_client\tai_client_get_ai_config\tcontains;ai_client_call_ai\tai_client_call_anthropic\tcalls;ai_client_call_ai\tai_client_call_openai_compatible\tcalls;ai_json_utils\tai_json_utils_attempt_fix_quotes\tcontains;ai_json_utils\tai_json_utils_extract_json\tcontains;ai_json_utils\tai_json_utils_extract_json_array\tcontains;ai_json_utils\tai_json_utils_regex_lite_replace\tcontains;ai_json_utils\tai_json_utils_safe_parse_json\tcontains;ai_json_utils\tai_json_utils_sanitize_ai_json\tcontains;ai_json_utils\tai_json_utils_strip_code_fences\tcontains;ai_json_utils_attempt_fix_quotes\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_extract_json\tai_json_utils_safe_parse_json\tcalls;ai_json_utils_extract_json\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_extract_json\tai_json_utils_strip_code_fences\tcalls;ai_json_utils_extract_json_array\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_extract_json_array\tai_json_utils_strip_code_fences\tcalls;ai_json_utils_regex_lite_replace\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_safe_parse_json\tai_json_utils_sanitize_ai_json\tcalls;ai_providers\tai_providers_fetch_models_from_provider\tcontains;ai_providers\tai_providers_fetch_ollama_models\tcontains;ai_providers\tai_providers_get_all_providers\tcontains;ai_providers\tai_providers_get_provider\tcontains;ai_providers\tai_providers_modelinfo\tcontains;ai_providers\tai_providers_providerconfig\tcontains;ai_providers\tai_providers_test_provider_connection\tcontains;ai_providers_fetch_models_from_provider\tai_providers_fetch_ollama_models\tcalls;ai_providers_fetch_models_from_provider\tai_providers_get_provider\tcalls;ai_providers_fetch_models_from_provider\tai_providers_test_provider_connection\tcalls;ai_providers_get_all_providers\tai_providers_get_provider\tcalls;ai_services\tai_services_expand_concept\tcontains;ai_services\tai_services_explore_topic\tcontains;ai_services\tai_services_generate_quiz\tcontains;ai_services\tai_services_get_layered_explanation\tcontains;ai_services\tai_services_tutor_chat\tcontains;db_mod\tdb_mod_get_db_path\tcontains;db_mod\tdb_mod_get_workspace_dir\tcontains;db_mod\tdb_mod_init_db\tcontains;db_mod_get_db_path\tdb_mod_get_workspace_dir\tcalls;db_mod_get_db_path\tdb_mod_init_db\tcalls;db_mod_get_workspace_dir\tdb_mod_init_db\tcalls;db_models\tdb_models_aiexplorationresult\tcontains;db_models\tdb_models_appsettings\tcontains;db_models\tdb_models_bookmark\tcontains;db_models\tdb_models_chatmessage\tcontains;db_models\tdb_models_concept\tcontains;db_models\tdb_models_conceptinput\tcontains;db_models\tdb_models_conversation\tcontains;db_models\tdb_models_default_card_type\tcontains;db_models\tdb_models_default_category\tcontains;db_models\tdb_models_default_color\tcontains;db_models\tdb_models_default_concept_type\tcontains;db_models\tdb_models_default_convo_title\tcontains;db_models\tdb_models_default_difficulty\tcontains;db_models\tdb_models_default_event_importance\tcontains;db_models\tdb_models_default_icon\tcontains;db_models\tdb_models_default_importance\tcontains;db_models\tdb_models_default_json_array\tcontains;db_models\tdb_models_default_lp_difficulty\tcontains;db_models\tdb_models_default_model\tcontains;db_models\tdb_models_default_note_title\tcontains;db_models\tdb_models_default_provider\tcontains;db_models\tdb_models_default_rel_type\tcontains;db_models\tdb_models_default_status\tcontains;db_models\tdb_models_default_theme\tcontains;db_models\tdb_models_flashcard\tcontains;db_models\tdb_models_flashcardinput\tcontains;db_models\tdb_models_knowledgecard\tcontains;db_models\tdb_models_learningpath\tcontains;db_models\tdb_models_learningpathinput\tcontains;db_models\tdb_models_learningstepinput\tcontains;db_models\tdb_models_note\tcontains;db_models\tdb_models_quizquestion\tcontains;db_models\tdb_models_relationship\tcontains;db_models\tdb_models_relationshipinput\tcontains;db_models\tdb_models_timelineevent\tcontains;db_models\tdb_models_timelineeventinput\tcontains;db_models\tdb_models_topic\tcontains;db_models\tdb_models_topicwithworkspace\tcontains;db_models\tdb_models_workspace\tcontains;db_schema\tdb_schema_create_tables\tcontains;js_app\tjs_app_api\tcontains;js_app\tjs_app_closemodal\tcontains;js_app\tjs_app_confirmaction\tcontains;js_app\tjs_app_esc\tcontains;js_app\tjs_app_formatdate\tcontains;js_app\tjs_app_geturlparam\tcontains;js_app\tjs_app_inittabs\tcontains;js_app\tjs_app_openmodal\tcontains;js_app\tjs_app_showempty\tcontains;js_app\tjs_app_showloading\tcontains;js_app\tjs_app_showtoast\tcontains;js_app\tjs_app_timeago\tcontains;js_app_esc\tjs_app_showtoast\tcalls;js_dashboard\tjs_dashboard_createtopic\tcontains;js_dashboard\tjs_dashboard_createworkspace\tcontains;js_dashboard\tjs_dashboard_deletetopic\tcontains;js_dashboard\tjs_dashboard_deleteworkspace\tcontains;js_dashboard\tjs_dashboard_filterbyworkspace\tcontains;js_dashboard\tjs_dashboard_loadtopics\tcontains;js_dashboard\tjs_dashboard_loadworkspaces\tcontains;js_dashboard\tjs_dashboard_movetopic\tcontains;js_dashboard\tjs_dashboard_opentopic\tcontains;js_dashboard\tjs_dashboard_openworkspaceview\tcontains;js_dashboard\tjs_dashboard_quickexplore\tcontains;js_dashboard\tjs_dashboard_rendertopics\tcontains;js_dashboard\tjs_dashboard_renderworkspaces\tcontains;js_dashboard\tjs_dashboard_showworkspacesview\tcontains;js_dashboard\tjs_dashboard_topics\tcontains;js_dashboard\tjs_dashboard_updatetopicworkspaceselect\tcontains;js_dashboard\tjs_dashboard_updateworkspacefilter\tcontains;js_dashboard\tjs_dashboard_workspaces\tcontains;js_dashboard_createworkspace\tjs_dashboard_loadworkspaces\tcalls;js_dashboard_deletetopic\tjs_dashboard_loadtopics\tcalls;js_dashboard_deleteworkspace\tjs_dashboard_loadtopics\tcalls;js_dashboard_deleteworkspace\tjs_dashboard_loadworkspaces\tcalls;js_dashboard_filterbyworkspace\tjs_dashboard_loadtopics\tcalls;js_dashboard_loadtopics\tjs_dashboard_movetopic\tcalls;js_dashboard_loadtopics\tjs_dashboard_openworkspaceview\tcalls;js_dashboard_loadtopics\tjs_dashboard_rendertopics\tcalls;js_dashboard_loadworkspaces\tjs_dashboard_renderworkspaces\tcalls;js_dashboard_loadworkspaces\tjs_dashboard_updatetopicworkspaceselect\tcalls;js_dashboard_loadworkspaces\tjs_dashboard_updateworkspacefilter\tcalls;js_explore\tjs_explore_answerquiz\tcontains;js_explore\tjs_explore_buildstricttree\tcontains;js_explore\tjs_explore_data\tcontains;js_explore\tjs_explore_expandconcept\tcontains;js_explore\tjs_explore_loadtopicdata\tcontains;js_explore\tjs_explore_nextflashcard\tcontains;js_explore\tjs_explore_prevflashcard\tcontains;js_explore\tjs_explore_quizquestions\tcontains;js_explore\tjs_explore_rel_colors\tcontains;js_explore\tjs_explore_renderall\tcontains;js_explore\tjs_explore_renderconcepts\tcontains;js_explore\tjs_explore_rendercurrentflashcard\tcontains;js_explore\tjs_explore_renderflashcards\tcontains;js_explore\tjs_explore_rendergraph\tcontains;js_explore\tjs_explore_renderlearningpaths\tcontains;js_explore\tjs_explore_renderquizquestion\tcontains;js_explore\tjs_explore_rendertimeline\tcontains;js_explore\tjs_explore_rendertree\tcontains;js_explore\tjs_explore_sendchatmessage\tcontains;js_explore\tjs_explore_showconceptdetail\tcontains;js_explore\tjs_explore_startexploration\tcontains;js_explore\tjs_explore_startquiz\tcontains;js_explore\tjs_explore_type_colors\tcontains;js_explore\tjs_explore_type_icons\tcontains;js_explore_buildstricttree\tjs_explore_rendertree\tcalls;js_explore_data\tjs_explore_rendergraph\tcalls;js_explore_data\tjs_explore_rendertree\tcalls;js_explore_expandconcept\tjs_explore_loadtopicdata\tcalls;js_explore_loadtopicdata\tjs_explore_renderall\tcalls;js_explore_loadtopicdata\tjs_explore_startexploration\tcalls;js_explore_nextflashcard\tjs_explore_rendercurrentflashcard\tcalls;js_explore_prevflashcard\tjs_explore_rendercurrentflashcard\tcalls;js_explore_renderall\tjs_explore_renderconcepts\tcalls;js_explore_renderall\tjs_explore_renderflashcards\tcalls;js_explore_renderall\tjs_explore_rendergraph\tcalls;js_explore_renderall\tjs_explore_renderlearningpaths\tcalls;js_explore_renderall\tjs_explore_rendertimeline\tcalls;js_explore_renderall\tjs_explore_rendertree\tcalls;js_explore_rendercurrentflashcard\tjs_explore_renderflashcards\tcalls;js_explore_renderquizquestion\tjs_explore_startquiz\tcalls;routes_ai_routes\troutes_ai_routes_expandrequest\tcontains;routes_ai_routes\troutes_ai_routes_explain\tcontains;routes_ai_routes\troutes_ai_routes_explainrequest\tcontains;routes_ai_routes\troutes_ai_routes_explore\tcontains;routes_ai_routes\troutes_ai_routes_explorerequest\tcontains;routes_ai_routes\troutes_ai_routes_models\tcontains;routes_ai_routes\troutes_ai_routes_modelsrequest\tcontains;routes_ai_routes\troutes_ai_routes_quiz\tcontains;routes_ai_routes\troutes_ai_routes_quizrequest\tcontains;routes_ai_routes\troutes_ai_routes_save_exploration_results\tcontains;routes_ai_routes\troutes_ai_routes_tutor\tcontains;routes_ai_routes\troutes_ai_routes_tutorrequest\tcontains;routes_ai_routes_explore\troutes_ai_routes_save_exploration_results\tcalls;routes_concepts\troutes_concepts_create_concept\tcontains;routes_concepts\troutes_concepts_createconcept\tcontains;routes_concepts\troutes_concepts_delete_concept\tcontains;routes_concepts\troutes_concepts_list_concepts\tcontains;routes_concepts\troutes_concepts_update_concept\tcontains;routes_concepts\troutes_concepts_updateconcept\tcontains;routes_health\troutes_health_health_check\tcontains;routes_mod\troutes_mod_configure\tcontains;routes_notes\troutes_notes_create_note\tcontains;routes_notes\troutes_notes_createnote\tcontains;routes_notes\troutes_notes_delete_note\tcontains;routes_notes\troutes_notes_list_notes\tcontains;routes_notes\troutes_notes_update_note\tcontains;routes_notes\troutes_notes_updatenote\tcontains;routes_search\troutes_search_search\tcontains;routes_settings\troutes_settings_get_settings\tcontains;routes_settings\troutes_settings_update_settings\tcontains;routes_settings\troutes_settings_updatesettings\tcontains;routes_topics\troutes_topics_create_topic\tcontains;routes_topics\troutes_topics_createtopic\tcontains;routes_topics\troutes_topics_delete_topic\tcontains;routes_topics\troutes_topics_list_topics\tcontains;routes_topics\troutes_topics_update_topic_workspace\tcontains;routes_topics\troutes_topics_updatetopicworkspace\tcontains;routes_workspaces\troutes_workspaces_create_workspace\tcontains;routes_workspaces\troutes_workspaces_createworkspace\tcontains;routes_workspaces\troutes_workspaces_delete_workspace\tcontains;routes_workspaces\troutes_workspaces_deletequery\tcontains;routes_workspaces\troutes_workspaces_list_workspaces\tcontains;routes_workspaces\troutes_workspaces_update_workspace\tcontains;routes_workspaces\troutes_workspaces_updateworkspace\tcontains;src_main\tsrc_main_main\tcontains",
+  "topology_signature": "n=193;e=217;ai_client,ai_client_aiconfig,ai_client_call_ai,ai_client_call_anthropic,ai_client_call_openai_compatible,ai_client_chatmessage,ai_client_get_ai_config,ai_json_utils,ai_json_utils_attempt_fix_quotes,ai_json_utils_extract_json,ai_json_utils_extract_json_array,ai_json_utils_regex_lite_replace,ai_json_utils_safe_parse_json,ai_json_utils_sanitize_ai_json,ai_json_utils_strip_code_fences,ai_mod,ai_providers,ai_providers_fetch_models_from_provider,ai_providers_fetch_ollama_models,ai_providers_get_all_providers,ai_providers_get_provider,ai_providers_modelinfo,ai_providers_providerconfig,ai_providers_test_provider_connection,ai_services,ai_services_expand_concept,ai_services_explore_topic,ai_services_generate_concepts_pipeline,ai_services_generate_flashcards_pipeline,ai_services_generate_learning_path_pipeline,ai_services_generate_quiz,ai_services_generate_relationships_pipeline,ai_services_generate_timeline_pipeline,ai_services_get_layered_explanation,ai_services_tutor_chat,db_mod,db_mod_get_db_path,db_mod_get_workspace_dir,db_mod_init_db,db_models,db_models_aiexplorationresult,db_models_appsettings,db_models_bookmark,db_models_chatmessage,db_models_concept,db_models_conceptinput,db_models_conversation,db_models_default_card_type,db_models_default_category,db_models_default_color,db_models_default_concept_type,db_models_default_convo_title,db_models_default_difficulty,db_models_default_event_importance,db_models_default_icon,db_models_default_importance,db_models_default_json_array,db_models_default_lp_difficulty,db_models_default_model,db_models_default_note_title,db_models_default_provider,db_models_default_rel_type,db_models_default_status,db_models_default_theme,db_models_flashcard,db_models_flashcardinput,db_models_knowledgecard,db_models_learningpath,db_models_learningpathinput,db_models_learningstepinput,db_models_note,db_models_quizquestion,db_models_relationship,db_models_relationshipinput,db_models_timelineevent,db_models_timelineeventinput,db_models_topic,db_models_topicwithworkspace,db_models_workspace,db_schema,db_schema_create_tables,js_app,js_app_api,js_app_closemodal,js_app_confirmaction,js_app_esc,js_app_formatdate,js_app_geturlparam,js_app_inittabs,js_app_openmodal,js_app_showempty,js_app_showloading,js_app_showtoast,js_app_timeago,js_dashboard,js_dashboard_createtopic,js_dashboard_createworkspace,js_dashboard_deletetopic,js_dashboard_deleteworkspace,js_dashboard_filterbyworkspace,js_dashboard_loadtopics,js_dashboard_loadworkspaces,js_dashboard_opentopic,js_dashboard_quickexplore,js_dashboard_rendertopics,js_dashboard_renderworkspaces,js_dashboard_topics,js_dashboard_updatetopicworkspaceselect,js_dashboard_updateworkspacefilter,js_dashboard_workspaces,js_explore,js_explore_answerquiz,js_explore_buildstricttree,js_explore_data,js_explore_expandconcept,js_explore_loadtopicdata,js_explore_nextflashcard,js_explore_prevflashcard,js_explore_quizquestions,js_explore_rel_colors,js_explore_renderall,js_explore_renderconcepts,js_explore_rendercurrentflashcard,js_explore_renderflashcards,js_explore_rendergraph,js_explore_renderlearningpaths,js_explore_renderquizquestion,js_explore_rendertimeline,js_explore_rendertree,js_explore_sendchatmessage,js_explore_showconceptdetail,js_explore_startexploration,js_explore_startquiz,js_explore_type_colors,js_explore_type_icons,routes_ai_routes,routes_ai_routes_expandrequest,routes_ai_routes_explain,routes_ai_routes_explainrequest,routes_ai_routes_explore,routes_ai_routes_explorerequest,routes_ai_routes_generate_concepts,routes_ai_routes_generate_flashcards,routes_ai_routes_generate_learning_path,routes_ai_routes_generate_relationships,routes_ai_routes_generate_timeline,routes_ai_routes_models,routes_ai_routes_modelsrequest,routes_ai_routes_pipelinerequest,routes_ai_routes_quiz,routes_ai_routes_quizrequest,routes_ai_routes_save_exploration_results,routes_ai_routes_tutor,routes_ai_routes_tutorrequest,routes_concepts,routes_concepts_create_concept,routes_concepts_createconcept,routes_concepts_delete_concept,routes_concepts_list_concepts,routes_concepts_update_concept,routes_concepts_updateconcept,routes_health,routes_health_health_check,routes_mod,routes_mod_configure,routes_notes,routes_notes_create_note,routes_notes_createnote,routes_notes_delete_note,routes_notes_list_notes,routes_notes_update_note,routes_notes_updatenote,routes_search,routes_search_search,routes_settings,routes_settings_get_settings,routes_settings_update_settings,routes_settings_updatesettings,routes_topics,routes_topics_create_topic,routes_topics_createtopic,routes_topics_delete_topic,routes_topics_list_topics,routes_workspaces,routes_workspaces_create_workspace,routes_workspaces_createworkspace,routes_workspaces_delete_workspace,routes_workspaces_deletequery,routes_workspaces_list_workspaces,routes_workspaces_update_workspace,routes_workspaces_updateworkspace,src_main,src_main_main|ai_client\tai_client_aiconfig\tcontains;ai_client\tai_client_call_ai\tcontains;ai_client\tai_client_call_anthropic\tcontains;ai_client\tai_client_call_openai_compatible\tcontains;ai_client\tai_client_chatmessage\tcontains;ai_client\tai_client_get_ai_config\tcontains;ai_client_call_ai\tai_client_call_anthropic\tcalls;ai_client_call_ai\tai_client_call_openai_compatible\tcalls;ai_json_utils\tai_json_utils_attempt_fix_quotes\tcontains;ai_json_utils\tai_json_utils_extract_json\tcontains;ai_json_utils\tai_json_utils_extract_json_array\tcontains;ai_json_utils\tai_json_utils_regex_lite_replace\tcontains;ai_json_utils\tai_json_utils_safe_parse_json\tcontains;ai_json_utils\tai_json_utils_sanitize_ai_json\tcontains;ai_json_utils\tai_json_utils_strip_code_fences\tcontains;ai_json_utils_attempt_fix_quotes\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_extract_json\tai_json_utils_safe_parse_json\tcalls;ai_json_utils_extract_json\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_extract_json\tai_json_utils_strip_code_fences\tcalls;ai_json_utils_extract_json_array\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_extract_json_array\tai_json_utils_strip_code_fences\tcalls;ai_json_utils_regex_lite_replace\tai_json_utils_sanitize_ai_json\tcalls;ai_json_utils_safe_parse_json\tai_json_utils_sanitize_ai_json\tcalls;ai_providers\tai_providers_fetch_models_from_provider\tcontains;ai_providers\tai_providers_fetch_ollama_models\tcontains;ai_providers\tai_providers_get_all_providers\tcontains;ai_providers\tai_providers_get_provider\tcontains;ai_providers\tai_providers_modelinfo\tcontains;ai_providers\tai_providers_providerconfig\tcontains;ai_providers\tai_providers_test_provider_connection\tcontains;ai_providers_fetch_models_from_provider\tai_providers_fetch_ollama_models\tcalls;ai_providers_fetch_models_from_provider\tai_providers_get_provider\tcalls;ai_providers_fetch_models_from_provider\tai_providers_test_provider_connection\tcalls;ai_providers_get_all_providers\tai_providers_get_provider\tcalls;ai_services\tai_services_expand_concept\tcontains;ai_services\tai_services_explore_topic\tcontains;ai_services\tai_services_generate_concepts_pipeline\tcontains;ai_services\tai_services_generate_flashcards_pipeline\tcontains;ai_services\tai_services_generate_learning_path_pipeline\tcontains;ai_services\tai_services_generate_quiz\tcontains;ai_services\tai_services_generate_relationships_pipeline\tcontains;ai_services\tai_services_generate_timeline_pipeline\tcontains;ai_services\tai_services_get_layered_explanation\tcontains;ai_services\tai_services_tutor_chat\tcontains;db_mod\tdb_mod_get_db_path\tcontains;db_mod\tdb_mod_get_workspace_dir\tcontains;db_mod\tdb_mod_init_db\tcontains;db_mod_get_db_path\tdb_mod_get_workspace_dir\tcalls;db_mod_get_db_path\tdb_mod_init_db\tcalls;db_mod_get_workspace_dir\tdb_mod_init_db\tcalls;db_models\tdb_models_aiexplorationresult\tcontains;db_models\tdb_models_appsettings\tcontains;db_models\tdb_models_bookmark\tcontains;db_models\tdb_models_chatmessage\tcontains;db_models\tdb_models_concept\tcontains;db_models\tdb_models_conceptinput\tcontains;db_models\tdb_models_conversation\tcontains;db_models\tdb_models_default_card_type\tcontains;db_models\tdb_models_default_category\tcontains;db_models\tdb_models_default_color\tcontains;db_models\tdb_models_default_concept_type\tcontains;db_models\tdb_models_default_convo_title\tcontains;db_models\tdb_models_default_difficulty\tcontains;db_models\tdb_models_default_event_importance\tcontains;db_models\tdb_models_default_icon\tcontains;db_models\tdb_models_default_importance\tcontains;db_models\tdb_models_default_json_array\tcontains;db_models\tdb_models_default_lp_difficulty\tcontains;db_models\tdb_models_default_model\tcontains;db_models\tdb_models_default_note_title\tcontains;db_models\tdb_models_default_provider\tcontains;db_models\tdb_models_default_rel_type\tcontains;db_models\tdb_models_default_status\tcontains;db_models\tdb_models_default_theme\tcontains;db_models\tdb_models_flashcard\tcontains;db_models\tdb_models_flashcardinput\tcontains;db_models\tdb_models_knowledgecard\tcontains;db_models\tdb_models_learningpath\tcontains;db_models\tdb_models_learningpathinput\tcontains;db_models\tdb_models_learningstepinput\tcontains;db_models\tdb_models_note\tcontains;db_models\tdb_models_quizquestion\tcontains;db_models\tdb_models_relationship\tcontains;db_models\tdb_models_relationshipinput\tcontains;db_models\tdb_models_timelineevent\tcontains;db_models\tdb_models_timelineeventinput\tcontains;db_models\tdb_models_topic\tcontains;db_models\tdb_models_topicwithworkspace\tcontains;db_models\tdb_models_workspace\tcontains;db_schema\tdb_schema_create_tables\tcontains;js_app\tjs_app_api\tcontains;js_app\tjs_app_closemodal\tcontains;js_app\tjs_app_confirmaction\tcontains;js_app\tjs_app_esc\tcontains;js_app\tjs_app_formatdate\tcontains;js_app\tjs_app_geturlparam\tcontains;js_app\tjs_app_inittabs\tcontains;js_app\tjs_app_openmodal\tcontains;js_app\tjs_app_showempty\tcontains;js_app\tjs_app_showloading\tcontains;js_app\tjs_app_showtoast\tcontains;js_app\tjs_app_timeago\tcontains;js_app_esc\tjs_app_showtoast\tcalls;js_dashboard\tjs_dashboard_createtopic\tcontains;js_dashboard\tjs_dashboard_createworkspace\tcontains;js_dashboard\tjs_dashboard_deletetopic\tcontains;js_dashboard\tjs_dashboard_deleteworkspace\tcontains;js_dashboard\tjs_dashboard_filterbyworkspace\tcontains;js_dashboard\tjs_dashboard_loadtopics\tcontains;js_dashboard\tjs_dashboard_loadworkspaces\tcontains;js_dashboard\tjs_dashboard_opentopic\tcontains;js_dashboard\tjs_dashboard_quickexplore\tcontains;js_dashboard\tjs_dashboard_rendertopics\tcontains;js_dashboard\tjs_dashboard_renderworkspaces\tcontains;js_dashboard\tjs_dashboard_topics\tcontains;js_dashboard\tjs_dashboard_updatetopicworkspaceselect\tcontains;js_dashboard\tjs_dashboard_updateworkspacefilter\tcontains;js_dashboard\tjs_dashboard_workspaces\tcontains;js_dashboard_createworkspace\tjs_dashboard_loadworkspaces\tcalls;js_dashboard_deletetopic\tjs_dashboard_loadtopics\tcalls;js_dashboard_deleteworkspace\tjs_dashboard_loadtopics\tcalls;js_dashboard_deleteworkspace\tjs_dashboard_loadworkspaces\tcalls;js_dashboard_filterbyworkspace\tjs_dashboard_loadtopics\tcalls;js_dashboard_loadtopics\tjs_dashboard_rendertopics\tcalls;js_dashboard_loadworkspaces\tjs_dashboard_renderworkspaces\tcalls;js_dashboard_loadworkspaces\tjs_dashboard_updatetopicworkspaceselect\tcalls;js_dashboard_loadworkspaces\tjs_dashboard_updateworkspacefilter\tcalls;js_explore\tjs_explore_answerquiz\tcontains;js_explore\tjs_explore_buildstricttree\tcontains;js_explore\tjs_explore_data\tcontains;js_explore\tjs_explore_expandconcept\tcontains;js_explore\tjs_explore_loadtopicdata\tcontains;js_explore\tjs_explore_nextflashcard\tcontains;js_explore\tjs_explore_prevflashcard\tcontains;js_explore\tjs_explore_quizquestions\tcontains;js_explore\tjs_explore_rel_colors\tcontains;js_explore\tjs_explore_renderall\tcontains;js_explore\tjs_explore_renderconcepts\tcontains;js_explore\tjs_explore_rendercurrentflashcard\tcontains;js_explore\tjs_explore_renderflashcards\tcontains;js_explore\tjs_explore_rendergraph\tcontains;js_explore\tjs_explore_renderlearningpaths\tcontains;js_explore\tjs_explore_renderquizquestion\tcontains;js_explore\tjs_explore_rendertimeline\tcontains;js_explore\tjs_explore_rendertree\tcontains;js_explore\tjs_explore_sendchatmessage\tcontains;js_explore\tjs_explore_showconceptdetail\tcontains;js_explore\tjs_explore_startexploration\tcontains;js_explore\tjs_explore_startquiz\tcontains;js_explore\tjs_explore_type_colors\tcontains;js_explore\tjs_explore_type_icons\tcontains;js_explore_buildstricttree\tjs_explore_rendertree\tcalls;js_explore_data\tjs_explore_rendergraph\tcalls;js_explore_data\tjs_explore_rendertree\tcalls;js_explore_expandconcept\tjs_explore_loadtopicdata\tcalls;js_explore_loadtopicdata\tjs_explore_renderall\tcalls;js_explore_loadtopicdata\tjs_explore_startexploration\tcalls;js_explore_nextflashcard\tjs_explore_rendercurrentflashcard\tcalls;js_explore_prevflashcard\tjs_explore_rendercurrentflashcard\tcalls;js_explore_renderall\tjs_explore_renderconcepts\tcalls;js_explore_renderall\tjs_explore_renderflashcards\tcalls;js_explore_renderall\tjs_explore_rendergraph\tcalls;js_explore_renderall\tjs_explore_renderlearningpaths\tcalls;js_explore_renderall\tjs_explore_rendertimeline\tcalls;js_explore_renderall\tjs_explore_rendertree\tcalls;js_explore_rendercurrentflashcard\tjs_explore_renderflashcards\tcalls;js_explore_rendergraph\tjs_explore_startexploration\tcalls;js_explore_renderquizquestion\tjs_explore_startquiz\tcalls;routes_ai_routes\troutes_ai_routes_expandrequest\tcontains;routes_ai_routes\troutes_ai_routes_explain\tcontains;routes_ai_routes\troutes_ai_routes_explainrequest\tcontains;routes_ai_routes\troutes_ai_routes_explore\tcontains;routes_ai_routes\troutes_ai_routes_explorerequest\tcontains;routes_ai_routes\troutes_ai_routes_generate_concepts\tcontains;routes_ai_routes\troutes_ai_routes_generate_flashcards\tcontains;routes_ai_routes\troutes_ai_routes_generate_learning_path\tcontains;routes_ai_routes\troutes_ai_routes_generate_relationships\tcontains;routes_ai_routes\troutes_ai_routes_generate_timeline\tcontains;routes_ai_routes\troutes_ai_routes_models\tcontains;routes_ai_routes\troutes_ai_routes_modelsrequest\tcontains;routes_ai_routes\troutes_ai_routes_pipelinerequest\tcontains;routes_ai_routes\troutes_ai_routes_quiz\tcontains;routes_ai_routes\troutes_ai_routes_quizrequest\tcontains;routes_ai_routes\troutes_ai_routes_save_exploration_results\tcontains;routes_ai_routes\troutes_ai_routes_tutor\tcontains;routes_ai_routes\troutes_ai_routes_tutorrequest\tcontains;routes_ai_routes_explore\troutes_ai_routes_save_exploration_results\tcalls;routes_concepts\troutes_concepts_create_concept\tcontains;routes_concepts\troutes_concepts_createconcept\tcontains;routes_concepts\troutes_concepts_delete_concept\tcontains;routes_concepts\troutes_concepts_list_concepts\tcontains;routes_concepts\troutes_concepts_update_concept\tcontains;routes_concepts\troutes_concepts_updateconcept\tcontains;routes_health\troutes_health_health_check\tcontains;routes_mod\troutes_mod_configure\tcontains;routes_notes\troutes_notes_create_note\tcontains;routes_notes\troutes_notes_createnote\tcontains;routes_notes\troutes_notes_delete_note\tcontains;routes_notes\troutes_notes_list_notes\tcontains;routes_notes\troutes_notes_update_note\tcontains;routes_notes\troutes_notes_updatenote\tcontains;routes_search\troutes_search_search\tcontains;routes_settings\troutes_settings_get_settings\tcontains;routes_settings\troutes_settings_update_settings\tcontains;routes_settings\troutes_settings_updatesettings\tcontains;routes_topics\troutes_topics_create_topic\tcontains;routes_topics\troutes_topics_createtopic\tcontains;routes_topics\troutes_topics_delete_topic\tcontains;routes_topics\troutes_topics_list_topics\tcontains;routes_workspaces\troutes_workspaces_create_workspace\tcontains;routes_workspaces\troutes_workspaces_createworkspace\tcontains;routes_workspaces\troutes_workspaces_delete_workspace\tcontains;routes_workspaces\troutes_workspaces_deletequery\tcontains;routes_workspaces\troutes_workspaces_list_workspaces\tcontains;routes_workspaces\troutes_workspaces_update_workspace\tcontains;routes_workspaces\troutes_workspaces_updateworkspace\tcontains;src_main\tsrc_main_main\tcontains",
   "nodes": [
     {
       "id": "ai_client",
@@ -34,8 +34,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L1",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_client_aiconfig",
@@ -43,8 +43,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L9",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_client_get_ai_config",
@@ -52,8 +52,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L17",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_client_chatmessage",
@@ -61,8 +61,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L40",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_client_call_openai_compatible",
@@ -70,8 +70,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L46",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_client_call_anthropic",
@@ -79,8 +79,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L101",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_client_call_ai",
@@ -88,8 +88,8 @@
       "file_type": "code",
       "source_file": "src/ai/client.rs",
       "source_location": "L169",
-      "community": 8,
-      "community_name": "Community 8"
+      "community": 9,
+      "community_name": "Community 9"
     },
     {
       "id": "ai_json_utils",
@@ -97,8 +97,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L1",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_json_utils_extract_json",
@@ -106,8 +106,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L5",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_json_utils_extract_json_array",
@@ -115,8 +115,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L46",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_json_utils_strip_code_fences",
@@ -124,8 +124,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L86",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_json_utils_sanitize_ai_json",
@@ -133,8 +133,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L109",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_json_utils_attempt_fix_quotes",
@@ -142,8 +142,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L149",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_json_utils_safe_parse_json",
@@ -151,8 +151,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L181",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     },
     {
       "id": "ai_mod",
@@ -169,8 +169,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L1",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_providerconfig",
@@ -178,8 +178,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L5",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_modelinfo",
@@ -187,8 +187,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L20",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_get_all_providers",
@@ -196,8 +196,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L27",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_get_provider",
@@ -205,8 +205,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L153",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_fetch_models_from_provider",
@@ -214,8 +214,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L158",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_fetch_ollama_models",
@@ -223,8 +223,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L240",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_providers_test_provider_connection",
@@ -232,8 +232,8 @@
       "file_type": "code",
       "source_file": "src/ai/providers.rs",
       "source_location": "L279",
-      "community": 6,
-      "community_name": "Community 6"
+      "community": 7,
+      "community_name": "Community 7"
     },
     {
       "id": "ai_services",
@@ -241,8 +241,8 @@
       "file_type": "code",
       "source_file": "src/ai/services.rs",
       "source_location": "L1",
-      "community": 12,
-      "community_name": "Community 12"
+      "community": 5,
+      "community_name": "Community 5"
     },
     {
       "id": "ai_services_explore_topic",
@@ -250,44 +250,89 @@
       "file_type": "code",
       "source_file": "src/ai/services.rs",
       "source_location": "L11",
-      "community": 12,
-      "community_name": "Community 12"
+      "community": 5,
+      "community_name": "Community 5"
     },
     {
       "id": "ai_services_expand_concept",
       "label": "expand_concept()",
       "file_type": "code",
       "source_file": "src/ai/services.rs",
-      "source_location": "L258",
-      "community": 12,
-      "community_name": "Community 12"
+      "source_location": "L263",
+      "community": 5,
+      "community_name": "Community 5"
     },
     {
       "id": "ai_services_tutor_chat",
       "label": "tutor_chat()",
       "file_type": "code",
       "source_file": "src/ai/services.rs",
-      "source_location": "L353",
-      "community": 12,
-      "community_name": "Community 12"
+      "source_location": "L358",
+      "community": 5,
+      "community_name": "Community 5"
     },
     {
       "id": "ai_services_get_layered_explanation",
       "label": "get_layered_explanation()",
       "file_type": "code",
       "source_file": "src/ai/services.rs",
-      "source_location": "L393",
-      "community": 12,
-      "community_name": "Community 12"
+      "source_location": "L398",
+      "community": 5,
+      "community_name": "Community 5"
     },
     {
       "id": "ai_services_generate_quiz",
       "label": "generate_quiz()",
       "file_type": "code",
       "source_file": "src/ai/services.rs",
-      "source_location": "L436",
-      "community": 12,
-      "community_name": "Community 12"
+      "source_location": "L441",
+      "community": 5,
+      "community_name": "Community 5"
+    },
+    {
+      "id": "ai_services_generate_concepts_pipeline",
+      "label": "generate_concepts_pipeline()",
+      "file_type": "code",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L492",
+      "community": 5,
+      "community_name": "Community 5"
+    },
+    {
+      "id": "ai_services_generate_relationships_pipeline",
+      "label": "generate_relationships_pipeline()",
+      "file_type": "code",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L521",
+      "community": 5,
+      "community_name": "Community 5"
+    },
+    {
+      "id": "ai_services_generate_flashcards_pipeline",
+      "label": "generate_flashcards_pipeline()",
+      "file_type": "code",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L551",
+      "community": 5,
+      "community_name": "Community 5"
+    },
+    {
+      "id": "ai_services_generate_timeline_pipeline",
+      "label": "generate_timeline_pipeline()",
+      "file_type": "code",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L576",
+      "community": 5,
+      "community_name": "Community 5"
+    },
+    {
+      "id": "ai_services_generate_learning_path_pipeline",
+      "label": "generate_learning_path_pipeline()",
+      "file_type": "code",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L605",
+      "community": 5,
+      "community_name": "Community 5"
     },
     {
       "id": "db_mod",
@@ -727,8 +772,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L1",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_explorerequest",
@@ -736,8 +781,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L9",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_expandrequest",
@@ -745,8 +790,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L15",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_explainrequest",
@@ -754,8 +799,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L23",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_quizrequest",
@@ -763,8 +808,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L29",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_tutorrequest",
@@ -772,8 +817,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L35",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_modelsrequest",
@@ -781,8 +826,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L43",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_explore",
@@ -790,8 +835,8 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L50",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_save_exploration_results",
@@ -799,44 +844,98 @@
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
       "source_location": "L117",
-      "community": 4,
-      "community_name": "Community 4"
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_explain",
       "label": "explain()",
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
-      "source_location": "L223",
-      "community": 4,
-      "community_name": "Community 4"
+      "source_location": "L228",
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_quiz",
       "label": "quiz()",
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
-      "source_location": "L236",
-      "community": 4,
-      "community_name": "Community 4"
+      "source_location": "L241",
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_tutor",
       "label": "tutor()",
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
-      "source_location": "L249",
-      "community": 4,
-      "community_name": "Community 4"
+      "source_location": "L254",
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_ai_routes_models",
       "label": "models()",
       "file_type": "code",
       "source_file": "src/routes/ai_routes.rs",
-      "source_location": "L317",
-      "community": 4,
-      "community_name": "Community 4"
+      "source_location": "L322",
+      "community": 2,
+      "community_name": "Community 2"
+    },
+    {
+      "id": "routes_ai_routes_pipelinerequest",
+      "label": "PipelineRequest",
+      "file_type": "code",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L335",
+      "community": 2,
+      "community_name": "Community 2"
+    },
+    {
+      "id": "routes_ai_routes_generate_concepts",
+      "label": "generate_concepts()",
+      "file_type": "code",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L341",
+      "community": 2,
+      "community_name": "Community 2"
+    },
+    {
+      "id": "routes_ai_routes_generate_relationships",
+      "label": "generate_relationships()",
+      "file_type": "code",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L373",
+      "community": 2,
+      "community_name": "Community 2"
+    },
+    {
+      "id": "routes_ai_routes_generate_flashcards",
+      "label": "generate_flashcards()",
+      "file_type": "code",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L408",
+      "community": 2,
+      "community_name": "Community 2"
+    },
+    {
+      "id": "routes_ai_routes_generate_timeline",
+      "label": "generate_timeline()",
+      "file_type": "code",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L429",
+      "community": 2,
+      "community_name": "Community 2"
+    },
+    {
+      "id": "routes_ai_routes_generate_learning_path",
+      "label": "generate_learning_path()",
+      "file_type": "code",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L451",
+      "community": 2,
+      "community_name": "Community 2"
     },
     {
       "id": "routes_concepts",
@@ -844,8 +943,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L1",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_concepts_createconcept",
@@ -853,8 +952,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L8",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_concepts_updateconcept",
@@ -862,8 +961,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L22",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_concepts_list_concepts",
@@ -871,8 +970,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L31",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_concepts_create_concept",
@@ -880,8 +979,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L184",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_concepts_update_concept",
@@ -889,8 +988,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L217",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_concepts_delete_concept",
@@ -898,8 +997,8 @@
       "file_type": "code",
       "source_file": "src/routes/concepts.rs",
       "source_location": "L265",
-      "community": 9,
-      "community_name": "Community 9"
+      "community": 10,
+      "community_name": "Community 10"
     },
     {
       "id": "routes_health",
@@ -943,8 +1042,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L1",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_notes_createnote",
@@ -952,8 +1051,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L8",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_notes_updatenote",
@@ -961,8 +1060,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L17",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_notes_list_notes",
@@ -970,8 +1069,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L25",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_notes_create_note",
@@ -979,8 +1078,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L104",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_notes_update_note",
@@ -988,8 +1087,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L131",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_notes_delete_note",
@@ -997,8 +1096,8 @@
       "file_type": "code",
       "source_file": "src/routes/notes.rs",
       "source_location": "L176",
-      "community": 10,
-      "community_name": "Community 10"
+      "community": 11,
+      "community_name": "Community 11"
     },
     {
       "id": "routes_search",
@@ -1060,8 +1159,8 @@
       "file_type": "code",
       "source_file": "src/routes/topics.rs",
       "source_location": "L1",
-      "community": 11,
-      "community_name": "Community 11"
+      "community": 12,
+      "community_name": "Community 12"
     },
     {
       "id": "routes_topics_createtopic",
@@ -1069,8 +1168,8 @@
       "file_type": "code",
       "source_file": "src/routes/topics.rs",
       "source_location": "L8",
-      "community": 11,
-      "community_name": "Community 11"
+      "community": 12,
+      "community_name": "Community 12"
     },
     {
       "id": "routes_topics_list_topics",
@@ -1078,8 +1177,8 @@
       "file_type": "code",
       "source_file": "src/routes/topics.rs",
       "source_location": "L14",
-      "community": 11,
-      "community_name": "Community 11"
+      "community": 12,
+      "community_name": "Community 12"
     },
     {
       "id": "routes_topics_create_topic",
@@ -1087,8 +1186,8 @@
       "file_type": "code",
       "source_file": "src/routes/topics.rs",
       "source_location": "L78",
-      "community": 11,
-      "community_name": "Community 11"
+      "community": 12,
+      "community_name": "Community 12"
     },
     {
       "id": "routes_topics_delete_topic",
@@ -1096,26 +1195,8 @@
       "file_type": "code",
       "source_file": "src/routes/topics.rs",
       "source_location": "L105",
-      "community": 11,
-      "community_name": "Community 11"
-    },
-    {
-      "id": "routes_topics_updatetopicworkspace",
-      "label": "UpdateTopicWorkspace",
-      "file_type": "code",
-      "source_file": "src/routes/topics.rs",
-      "source_location": "L139",
-      "community": 11,
-      "community_name": "Community 11"
-    },
-    {
-      "id": "routes_topics_update_topic_workspace",
-      "label": "update_topic_workspace()",
-      "file_type": "code",
-      "source_file": "src/routes/topics.rs",
-      "source_location": "L144",
-      "community": 11,
-      "community_name": "Community 11"
+      "community": 12,
+      "community_name": "Community 12"
     },
     {
       "id": "routes_workspaces",
@@ -1123,8 +1204,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L1",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_createworkspace",
@@ -1132,8 +1213,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L8",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_updateworkspace",
@@ -1141,8 +1222,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L16",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_deletequery",
@@ -1150,8 +1231,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L25",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_list_workspaces",
@@ -1159,8 +1240,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L29",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_create_workspace",
@@ -1168,8 +1249,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L63",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_update_workspace",
@@ -1177,8 +1258,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L92",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "routes_workspaces_delete_workspace",
@@ -1186,8 +1267,8 @@
       "file_type": "code",
       "source_file": "src/routes/workspaces.rs",
       "source_location": "L141",
-      "community": 7,
-      "community_name": "Community 7"
+      "community": 8,
+      "community_name": "Community 8"
     },
     {
       "id": "js_app",
@@ -1195,8 +1276,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L1",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_api",
@@ -1204,8 +1285,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L5",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_showtoast",
@@ -1213,8 +1294,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L41",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_openmodal",
@@ -1222,8 +1303,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L63",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_closemodal",
@@ -1231,8 +1312,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L67",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_inittabs",
@@ -1240,8 +1321,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L87",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_timeago",
@@ -1249,8 +1330,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L107",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_formatdate",
@@ -1258,8 +1339,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L123",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_confirmaction",
@@ -1267,8 +1348,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L131",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_showloading",
@@ -1276,8 +1357,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L140",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_showempty",
@@ -1285,8 +1366,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L151",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_esc",
@@ -1294,8 +1375,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L165",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_app_geturlparam",
@@ -1303,8 +1384,8 @@
       "file_type": "code",
       "source_file": "static/js/app.js",
       "source_location": "L174",
-      "community": 3,
-      "community_name": "Community 3"
+      "community": 4,
+      "community_name": "Community 4"
     },
     {
       "id": "js_dashboard",
@@ -1312,8 +1393,8 @@
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
       "source_location": "L1",
-      "community": 2,
-      "community_name": "Community 2"
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_workspaces",
@@ -1321,8 +1402,8 @@
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
       "source_location": "L5",
-      "community": 2,
-      "community_name": "Community 2"
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_topics",
@@ -1330,17 +1411,17 @@
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
       "source_location": "L6",
-      "community": 2,
-      "community_name": "Community 2"
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_loadworkspaces",
       "label": "loadWorkspaces()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L21",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L20",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_renderworkspaces",
@@ -1348,116 +1429,107 @@
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
       "source_location": "L33",
-      "community": 2,
-      "community_name": "Community 2"
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
-      "id": "js_dashboard_showworkspacesview",
-      "label": "showWorkspacesView()",
+      "id": "js_dashboard_updateworkspacefilter",
+      "label": "updateWorkspaceFilter()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
       "source_location": "L63",
-      "community": 2,
-      "community_name": "Community 2"
-    },
-    {
-      "id": "js_dashboard_openworkspaceview",
-      "label": "openWorkspaceView()",
-      "file_type": "code",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L69",
-      "community": 2,
-      "community_name": "Community 2"
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_updatetopicworkspaceselect",
       "label": "updateTopicWorkspaceSelect()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L87",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L69",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_loadtopics",
       "label": "loadTopics()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L96",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L78",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_rendertopics",
       "label": "renderTopics()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L108",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L91",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_quickexplore",
       "label": "quickExplore()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L136",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L130",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_createworkspace",
       "label": "createWorkspace()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L164",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L155",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_createtopic",
       "label": "createTopic()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L188",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L179",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_deletetopic",
       "label": "deleteTopic()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L209",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L200",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_deleteworkspace",
       "label": "deleteWorkspace()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L220",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L211",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
-      "id": "js_dashboard_movetopic",
-      "label": "moveTopic()",
+      "id": "js_dashboard_filterbyworkspace",
+      "label": "filterByWorkspace()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L234",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L223",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_dashboard_opentopic",
       "label": "openTopic()",
       "file_type": "code",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L247",
-      "community": 2,
-      "community_name": "Community 2"
+      "source_location": "L228",
+      "community": 3,
+      "community_name": "Community 3"
     },
     {
       "id": "js_explore",
@@ -1518,7 +1590,7 @@
       "label": "loadTopicData()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L53",
+      "source_location": "L54",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1527,7 +1599,7 @@
       "label": "renderAll()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L68",
+      "source_location": "L69",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1536,7 +1608,7 @@
       "label": "startExploration()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L90",
+      "source_location": "L91",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1545,7 +1617,7 @@
       "label": "renderGraph()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L111",
+      "source_location": "L144",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1554,7 +1626,7 @@
       "label": "buildStrictTree()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L279",
+      "source_location": "L322",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1563,7 +1635,7 @@
       "label": "renderTree()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L313",
+      "source_location": "L356",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1572,7 +1644,7 @@
       "label": "renderConcepts()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L417",
+      "source_location": "L460",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1581,7 +1653,7 @@
       "label": "showConceptDetail()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L447",
+      "source_location": "L490",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1590,7 +1662,7 @@
       "label": "expandConcept()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L514",
+      "source_location": "L557",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1599,7 +1671,7 @@
       "label": "renderTimeline()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L539",
+      "source_location": "L582",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1608,7 +1680,7 @@
       "label": "renderFlashcards()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L561",
+      "source_location": "L604",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1617,7 +1689,7 @@
       "label": "renderCurrentFlashcard()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L573",
+      "source_location": "L616",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1626,7 +1698,7 @@
       "label": "nextFlashcard()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L598",
+      "source_location": "L641",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1635,7 +1707,7 @@
       "label": "prevFlashcard()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L605",
+      "source_location": "L648",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1644,7 +1716,7 @@
       "label": "renderLearningPaths()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L614",
+      "source_location": "L657",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1653,7 +1725,7 @@
       "label": "startQuiz()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L650",
+      "source_location": "L693",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1662,7 +1734,7 @@
       "label": "renderQuizQuestion()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L666",
+      "source_location": "L709",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1671,7 +1743,7 @@
       "label": "answerQuiz()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L708",
+      "source_location": "L751",
       "community": 1,
       "community_name": "Community 1"
     },
@@ -1680,27 +1752,9 @@
       "label": "sendChatMessage()",
       "file_type": "code",
       "source_file": "static/js/explore.js",
-      "source_location": "L744",
+      "source_location": "L787",
       "community": 1,
       "community_name": "Community 1"
-    },
-    {
-      "id": "js_dashboard_updateworkspacefilter",
-      "label": "updateWorkspaceFilter()",
-      "file_type": "code",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L63",
-      "community": 2,
-      "community_name": "Community 2"
-    },
-    {
-      "id": "js_dashboard_filterbyworkspace",
-      "label": "filterByWorkspace()",
-      "file_type": "code",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L223",
-      "community": 2,
-      "community_name": "Community 2"
     },
     {
       "id": "ai_json_utils_regex_lite_replace",
@@ -1708,8 +1762,8 @@
       "file_type": "code",
       "source_file": "src/ai/json_utils.rs",
       "source_location": "L122",
-      "community": 5,
-      "community_name": "Community 5"
+      "community": 6,
+      "community_name": "Community 6"
     }
   ],
   "links": [
@@ -2123,6 +2177,42 @@
     },
     {
       "source": "ai_services",
+      "target": "ai_services_generate_concepts_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L492",
+      "weight": 1,
+      "_src": "ai_services",
+      "_tgt": "ai_services_generate_concepts_pipeline",
+      "confidence_score": 1
+    },
+    {
+      "source": "ai_services",
+      "target": "ai_services_generate_flashcards_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L551",
+      "weight": 1,
+      "_src": "ai_services",
+      "_tgt": "ai_services_generate_flashcards_pipeline",
+      "confidence_score": 1
+    },
+    {
+      "source": "ai_services",
+      "target": "ai_services_generate_learning_path_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L605",
+      "weight": 1,
+      "_src": "ai_services",
+      "_tgt": "ai_services_generate_learning_path_pipeline",
+      "confidence_score": 1
+    },
+    {
+      "source": "ai_services",
       "target": "ai_services_generate_quiz",
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -2131,6 +2221,30 @@
       "weight": 1,
       "_src": "ai_services",
       "_tgt": "ai_services_generate_quiz",
+      "confidence_score": 1
+    },
+    {
+      "source": "ai_services",
+      "target": "ai_services_generate_relationships_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L521",
+      "weight": 1,
+      "_src": "ai_services",
+      "_tgt": "ai_services_generate_relationships_pipeline",
+      "confidence_score": 1
+    },
+    {
+      "source": "ai_services",
+      "target": "ai_services_generate_timeline_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/ai/services.rs",
+      "source_location": "L576",
+      "weight": 1,
+      "_src": "ai_services",
+      "_tgt": "ai_services_generate_timeline_pipeline",
       "confidence_score": 1
     },
     {
@@ -2915,6 +3029,18 @@
     },
     {
       "source": "js_dashboard",
+      "target": "js_dashboard_filterbyworkspace",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/dashboard.js",
+      "source_location": "L223",
+      "weight": 1,
+      "_src": "js_dashboard",
+      "_tgt": "js_dashboard_filterbyworkspace",
+      "confidence_score": 1
+    },
+    {
+      "source": "js_dashboard",
       "target": "js_dashboard_loadtopics",
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -2939,18 +3065,6 @@
     },
     {
       "source": "js_dashboard",
-      "target": "js_dashboard_movetopic",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L234",
-      "weight": 1,
-      "_src": "js_dashboard",
-      "_tgt": "js_dashboard_movetopic",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard",
       "target": "js_dashboard_opentopic",
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -2959,18 +3073,6 @@
       "weight": 1,
       "_src": "js_dashboard",
       "_tgt": "js_dashboard_opentopic",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard",
-      "target": "js_dashboard_openworkspaceview",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L69",
-      "weight": 1,
-      "_src": "js_dashboard",
-      "_tgt": "js_dashboard_openworkspaceview",
       "confidence_score": 1
     },
     {
@@ -3011,18 +3113,6 @@
     },
     {
       "source": "js_dashboard",
-      "target": "js_dashboard_showworkspacesview",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L63",
-      "weight": 1,
-      "_src": "js_dashboard",
-      "_tgt": "js_dashboard_showworkspacesview",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard",
       "target": "js_dashboard_topics",
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -3043,6 +3133,18 @@
       "weight": 1,
       "_src": "js_dashboard",
       "_tgt": "js_dashboard_updatetopicworkspaceselect",
+      "confidence_score": 1
+    },
+    {
+      "source": "js_dashboard",
+      "target": "js_dashboard_updateworkspacefilter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/dashboard.js",
+      "source_location": "L63",
+      "weight": 1,
+      "_src": "js_dashboard",
+      "_tgt": "js_dashboard_updateworkspacefilter",
       "confidence_score": 1
     },
     {
@@ -3106,6 +3208,18 @@
       "confidence_score": 1
     },
     {
+      "source": "js_dashboard_filterbyworkspace",
+      "target": "js_dashboard_loadtopics",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "static/js/dashboard.js",
+      "source_location": "L225",
+      "weight": 1,
+      "_src": "js_dashboard_filterbyworkspace",
+      "_tgt": "js_dashboard_loadtopics",
+      "confidence_score": 1
+    },
+    {
       "source": "js_dashboard_loadtopics",
       "target": "js_dashboard_rendertopics",
       "relation": "calls",
@@ -3142,27 +3256,15 @@
       "confidence_score": 1
     },
     {
-      "source": "js_dashboard_movetopic",
-      "target": "js_dashboard_loadtopics",
+      "source": "js_dashboard_loadworkspaces",
+      "target": "js_dashboard_updateworkspacefilter",
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "static/js/dashboard.js",
-      "source_location": "L241",
+      "source_location": "L26",
       "weight": 1,
-      "_src": "js_dashboard_movetopic",
-      "_tgt": "js_dashboard_loadtopics",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard_openworkspaceview",
-      "target": "js_dashboard_loadtopics",
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L84",
-      "weight": 1,
-      "_src": "js_dashboard_openworkspaceview",
-      "_tgt": "js_dashboard_loadtopics",
+      "_src": "js_dashboard_loadworkspaces",
+      "_tgt": "js_dashboard_updateworkspacefilter",
       "confidence_score": 1
     },
     {
@@ -3183,7 +3285,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/explore.js",
-      "source_location": "L279",
+      "source_location": "L295",
       "weight": 1,
       "_src": "js_explore",
       "_tgt": "js_explore_buildstricttree",
@@ -3375,7 +3477,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "static/js/explore.js",
-      "source_location": "L313",
+      "source_location": "L329",
       "weight": 1,
       "_src": "js_explore",
       "_tgt": "js_explore_rendertree",
@@ -3579,7 +3681,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "static/js/explore.js",
-      "source_location": "L81",
+      "source_location": "L82",
       "weight": 1,
       "_src": "js_explore_renderall",
       "_tgt": "js_explore_rendertree",
@@ -3615,7 +3717,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "static/js/explore.js",
-      "source_location": "L327",
+      "source_location": "L343",
       "weight": 1,
       "_src": "js_explore_rendertree",
       "_tgt": "js_explore_buildstricttree",
@@ -3627,7 +3729,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "static/js/explore.js",
-      "source_location": "L353",
+      "source_location": "L369",
       "weight": 1,
       "_src": "js_explore_rendertree",
       "_tgt": "js_explore_data",
@@ -3707,6 +3809,66 @@
     },
     {
       "source": "routes_ai_routes",
+      "target": "routes_ai_routes_generate_concepts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L341",
+      "weight": 1,
+      "_src": "routes_ai_routes",
+      "_tgt": "routes_ai_routes_generate_concepts",
+      "confidence_score": 1
+    },
+    {
+      "source": "routes_ai_routes",
+      "target": "routes_ai_routes_generate_flashcards",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L408",
+      "weight": 1,
+      "_src": "routes_ai_routes",
+      "_tgt": "routes_ai_routes_generate_flashcards",
+      "confidence_score": 1
+    },
+    {
+      "source": "routes_ai_routes",
+      "target": "routes_ai_routes_generate_learning_path",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L451",
+      "weight": 1,
+      "_src": "routes_ai_routes",
+      "_tgt": "routes_ai_routes_generate_learning_path",
+      "confidence_score": 1
+    },
+    {
+      "source": "routes_ai_routes",
+      "target": "routes_ai_routes_generate_relationships",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L373",
+      "weight": 1,
+      "_src": "routes_ai_routes",
+      "_tgt": "routes_ai_routes_generate_relationships",
+      "confidence_score": 1
+    },
+    {
+      "source": "routes_ai_routes",
+      "target": "routes_ai_routes_generate_timeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L429",
+      "weight": 1,
+      "_src": "routes_ai_routes",
+      "_tgt": "routes_ai_routes_generate_timeline",
+      "confidence_score": 1
+    },
+    {
+      "source": "routes_ai_routes",
       "target": "routes_ai_routes_models",
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -3727,6 +3889,18 @@
       "weight": 1,
       "_src": "routes_ai_routes",
       "_tgt": "routes_ai_routes_modelsrequest",
+      "confidence_score": 1
+    },
+    {
+      "source": "routes_ai_routes",
+      "target": "routes_ai_routes_pipelinerequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/ai_routes.rs",
+      "source_location": "L335",
+      "weight": 1,
+      "_src": "routes_ai_routes",
+      "_tgt": "routes_ai_routes_pipelinerequest",
       "confidence_score": 1
     },
     {
@@ -4066,30 +4240,6 @@
       "confidence_score": 1
     },
     {
-      "source": "routes_topics",
-      "target": "routes_topics_update_topic_workspace",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/routes/topics.rs",
-      "source_location": "L144",
-      "weight": 1,
-      "_src": "routes_topics",
-      "_tgt": "routes_topics_update_topic_workspace",
-      "confidence_score": 1
-    },
-    {
-      "source": "routes_topics",
-      "target": "routes_topics_updatetopicworkspace",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/routes/topics.rs",
-      "source_location": "L139",
-      "weight": 1,
-      "_src": "routes_topics",
-      "_tgt": "routes_topics_updatetopicworkspace",
-      "confidence_score": 1
-    },
-    {
       "source": "routes_workspaces",
       "target": "routes_workspaces_create_workspace",
       "relation": "contains",
@@ -4186,51 +4336,15 @@
       "confidence_score": 1
     },
     {
-      "source": "js_dashboard",
-      "target": "js_dashboard_filterbyworkspace",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L223",
-      "weight": 1,
-      "_src": "js_dashboard",
-      "_tgt": "js_dashboard_filterbyworkspace",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard",
-      "target": "js_dashboard_updateworkspacefilter",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L63",
-      "weight": 1,
-      "_src": "js_dashboard",
-      "_tgt": "js_dashboard_updateworkspacefilter",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard_filterbyworkspace",
-      "target": "js_dashboard_loadtopics",
+      "source": "js_explore_startexploration",
+      "target": "js_explore_rendergraph",
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L225",
+      "source_file": "static/js/explore.js",
+      "source_location": "L97",
       "weight": 1,
-      "_src": "js_dashboard_filterbyworkspace",
-      "_tgt": "js_dashboard_loadtopics",
-      "confidence_score": 1
-    },
-    {
-      "source": "js_dashboard_loadworkspaces",
-      "target": "js_dashboard_updateworkspacefilter",
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "static/js/dashboard.js",
-      "source_location": "L26",
-      "weight": 1,
-      "_src": "js_dashboard_loadworkspaces",
-      "_tgt": "js_dashboard_updateworkspacefilter",
+      "_src": "js_explore_startexploration",
+      "_tgt": "js_explore_rendergraph",
       "confidence_score": 1
     },
     {

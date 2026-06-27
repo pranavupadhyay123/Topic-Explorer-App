@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use crate::ai::client::http_client; // Use the shared client
 
 /// Configuration for an AI provider
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -12,7 +13,7 @@ pub struct ProviderConfig {
     pub models_endpoint: String,
     pub default_models: Vec<String>,
     pub supports_streaming: bool,
-    pub api_format: String, // "openai" | "anthropic"
+    pub api_format: String, 
 }
 
 /// Information about a specific model
@@ -149,12 +150,10 @@ pub fn get_all_providers() -> Vec<ProviderConfig> {
     ]
 }
 
-/// Find a provider by ID
 pub fn get_provider(provider_id: &str) -> Option<ProviderConfig> {
     get_all_providers().into_iter().find(|p| p.id == provider_id)
 }
 
-/// Fetch available models from a provider
 pub async fn fetch_models_from_provider(
     provider_id: &str,
     api_key: &str,
@@ -167,7 +166,6 @@ pub async fn fetch_models_from_provider(
     }
 
     if provider_id == "anthropic" {
-        // Anthropic doesn't have a models endpoint; return defaults
         return Ok(provider
             .default_models
             .iter()
@@ -187,7 +185,7 @@ pub async fn fetch_models_from_provider(
 
     let url = format!("{}{}", base, provider.models_endpoint);
 
-    let client = reqwest::Client::new();
+    let client = http_client(); // Shared connection pool
     let mut req = client.get(&url);
     if !api_key.is_empty() {
         req = req.header("Authorization", format!("Bearer {}", api_key));
@@ -196,7 +194,6 @@ pub async fn fetch_models_from_provider(
     let resp = req.send().await.map_err(|e| format!("Request failed: {}", e))?;
 
     if !resp.status().is_success() {
-        // Fall back to default models
         return Ok(provider
             .default_models
             .iter()
@@ -236,7 +233,6 @@ pub async fn fetch_models_from_provider(
     Ok(models)
 }
 
-/// Fetch models from Ollama
 async fn fetch_ollama_models(custom_endpoint: &str) -> Result<Vec<ModelInfo>, String> {
     let base = if custom_endpoint.is_empty() {
         "http://localhost:11434"
@@ -246,10 +242,9 @@ async fn fetch_ollama_models(custom_endpoint: &str) -> Result<Vec<ModelInfo>, St
 
     let url = format!("{}/api/tags", base);
 
-    let client = reqwest::Client::new();
+    let client = http_client(); // Shared connection pool
     let resp = client
         .get(&url)
-        .timeout(std::time::Duration::from_secs(5))
         .send()
         .await
         .map_err(|e| format!("Ollama not reachable: {}", e))?;
@@ -275,7 +270,6 @@ async fn fetch_ollama_models(custom_endpoint: &str) -> Result<Vec<ModelInfo>, St
     Ok(models)
 }
 
-/// Test connection to a provider
 pub async fn test_provider_connection(
     provider_id: &str,
     api_key: &str,

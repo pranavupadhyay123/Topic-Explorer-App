@@ -278,7 +278,7 @@ pub struct ConceptInput {
     #[serde(default = "default_importance")]
     pub importance: i32,
     #[serde(default)]
-    pub details: String,
+    pub details: serde_json::Value,
     #[serde(default)]
     pub code_examples: Vec<serde_json::Value>,
     #[serde(default)]
@@ -322,7 +322,7 @@ pub struct FlashcardInput {
     pub difficulty: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct LearningPathInput {
     pub title: String,
     #[serde(default)]
@@ -335,24 +335,59 @@ pub struct LearningPathInput {
     pub estimated_time: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct LearningStepInput {
     pub title: String,
     #[serde(default)]
     pub description: String,
     #[serde(default)]
-    pub resources: Vec<String>,
+    pub resources: Vec<serde_json::Value>,
     #[serde(default)]
     pub order: i32,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct QuizQuestion {
+    #[serde(default)]
     pub question: String,
+    #[serde(default)]
     pub options: Vec<String>,
+    #[serde(deserialize_with = "deserialize_correct_answer")]
     pub correct_answer: usize,
     #[serde(default)]
     pub explanation: String,
+}
+
+fn deserialize_correct_answer<'de, D>(deserializer: D) -> Result<usize, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let val = serde_json::Value::deserialize(deserializer)?;
+    match val {
+        serde_json::Value::Number(n) => {
+            if let Some(i) = n.as_u64() {
+                Ok(i as usize)
+            } else {
+                Ok(0)
+            }
+        }
+        serde_json::Value::String(s) => {
+            let s_trim = s.trim().to_uppercase();
+            if let Ok(num) = s_trim.parse::<usize>() {
+                Ok(num)
+            } else {
+                match s_trim.as_str() {
+                    "A" | "OPTION A" => Ok(0),
+                    "B" | "OPTION B" => Ok(1),
+                    "C" | "OPTION C" => Ok(2),
+                    "D" | "OPTION D" => Ok(3),
+                    "E" | "OPTION E" => Ok(4),
+                    _ => Ok(0),
+                }
+            }
+        }
+        _ => Ok(0),
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

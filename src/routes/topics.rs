@@ -134,33 +134,3 @@ pub async fn delete_topic(
         Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
     }
 }
-
-#[derive(Deserialize)]
-pub struct UpdateTopicWorkspace {
-    pub id: String,
-    pub workspace_id: Option<String>,
-}
-
-pub async fn update_topic_workspace(
-    pool: web::Data<Arc<DbPool>>,
-    body: web::Json<UpdateTopicWorkspace>,
-) -> HttpResponse {
-    let conn = match pool.get() {
-        Ok(c) => c,
-        Err(e) => return HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
-    };
-
-    let wid_param = match &body.workspace_id {
-        Some(w) if w.is_empty() => None,
-        Some(w) => Some(w.clone()),
-        None => None,
-    };
-
-    match conn.execute(
-        "UPDATE topics SET workspace_id = ?1 WHERE id = ?2",
-        rusqlite::params![wid_param, body.id],
-    ) {
-        Ok(_) => HttpResponse::Ok().json(serde_json::json!({"success": true})),
-        Err(e) => HttpResponse::InternalServerError().json(serde_json::json!({"error": e.to_string()})),
-    }
-}

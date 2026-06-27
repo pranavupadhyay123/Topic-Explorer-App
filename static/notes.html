@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes — Topic Explorer</title>
+  <meta name="description" content="Manage your learning notes across topics and workspaces">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <a href="/" class="app-logo">
+        <span class="logo-icon">🧠</span>
+        <span>Topic Explorer</span>
+      </a>
+      <nav class="app-nav">
+        <a href="/" class="nav-link">🏠 Dashboard</a>
+        <a href="/notes.html" class="nav-link active">📝 Notes</a>
+        <a href="/settings.html" class="nav-link">⚙️ Settings</a>
+      </nav>
+    </header>
+
+    <div class="section-header">
+      <div>
+        <h1 class="section-title">📝 Notes</h1>
+        <p class="section-subtitle" id="notes-count">Your learning notes</p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal('create-note-modal')">✨ New Note</button>
+    </div>
+
+    <div id="notes-list" class="grid grid-auto"></div>
+  </div>
+
+  <!-- Create Note Modal -->
+  <div class="modal-overlay" id="create-note-modal">
+    <div class="modal">
+      <h3 class="modal-title">✨ New Note</h3>
+      <div class="input-group mb-md">
+        <label class="input-label">Title</label>
+        <input type="text" class="input" id="note-title" placeholder="Note title">
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Content</label>
+        <textarea class="textarea" id="note-content" placeholder="Write your notes here..." style="min-height:200px;"></textarea>
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Tags (comma-separated)</label>
+        <input type="text" class="input" id="note-tags" placeholder="e.g. AI, neural networks, deep learning">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('create-note-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="createNote()">Save Note</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Note Modal -->
+  <div class="modal-overlay" id="edit-note-modal">
+    <div class="modal">
+      <h3 class="modal-title">✏️ Edit Note</h3>
+      <input type="hidden" id="edit-note-id">
+      <div class="input-group mb-md">
+        <label class="input-label">Title</label>
+        <input type="text" class="input" id="edit-note-title">
+      </div>
+      <div class="input-group mb-md">
+        <label class="input-label">Content</label>
+        <textarea class="textarea" id="edit-note-content" style="min-height:200px;"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('edit-note-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="updateNote()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="/js/app.js"></script>
+  <script>
+    let notes = [];
+
+    document.addEventListener('DOMContentLoaded', loadNotes);
+
+    async function loadNotes() {
+      try {
+        notes = await API.get('/api/notes');
+        renderNotes();
+      } catch (err) {
+        showToast('Failed to load notes', 'error');
+      }
+    }
+
+    function renderNotes() {
+      const list = document.getElementById('notes-list');
+      document.getElementById('notes-count').textContent = `${notes.length} note${notes.length !== 1 ? 's' : ''}`;
+
+      if (notes.length === 0) {
+        showEmpty(list, '📝', 'No notes yet', 'Create your first note to start capturing ideas');
+        return;
+      }
+
+      list.innerHTML = notes.map((n, i) => `
+        <div class="card animate-in" style="animation-delay:${i * 0.05}s">
+          <div class="flex justify-between items-center mb-sm">
+            <div class="card-title">${n.is_pinned ? '📌 ' : ''}${esc(n.title)}</div>
+            <div class="flex gap-xs">
+              <button class="btn btn-ghost btn-icon btn-sm" onclick="togglePin('${esc(n.id)}', ${!n.is_pinned})">📌</button>
+              <button class="btn btn-ghost btn-icon btn-sm" onclick="editNote('${esc(n.id)}')">✏️</button>
+              <button class="btn btn-ghost btn-icon btn-sm" onclick="deleteNote('${esc(n.id)}')">🗑️</button>
+            </div>
+          </div>
+          <div class="card-desc" style="white-space:pre-wrap;max-height:150px;overflow:hidden;">${esc(n.content)}</div>
+          <div class="card-meta">
+            ${n.topic_title ? `<span>📖 ${esc(n.topic_title)}</span>` : ''}
+            ${n.workspace_name ? `<span>📚 ${esc(n.workspace_name)}</span>` : ''}
+            <span>${timeAgo(n.updated_at)}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function createNote() {
+      const title = document.getElementById('note-title').value.trim();
+      const content = document.getElementById('note-content').value.trim();
+      if (!title) { showToast('Please enter a title', 'error'); return; }
+
+      const tags = document.getElementById('note-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+
+      try {
+        await API.post('/api/notes', { title, content, tags: JSON.stringify(tags) });
+        showToast('Note created!', 'success');
+        closeModal('create-note-modal');
+        document.getElementById('note-title').value = '';
+        document.getElementById('note-content').value = '';
+        document.getElementById('note-tags').value = '';
+        loadNotes();
+      } catch (err) {
+        showToast('Failed to create note', 'error');
+      }
+    }
+
+    function editNote(id) {
+      const note = notes.find(n => n.id === id);
+      if (!note) return;
+      document.getElementById('edit-note-id').value = id;
+      document.getElementById('edit-note-title').value = note.title;
+      document.getElementById('edit-note-content').value = note.content;
+      openModal('edit-note-modal');
+    }
+
+    async function updateNote() {
+      const id = document.getElementById('edit-note-id').value;
+      try {
+        await API.put('/api/notes', {
+          id,
+          title: document.getElementById('edit-note-title').value.trim(),
+          content: document.getElementById('edit-note-content').value.trim(),
+        });
+        showToast('Note updated!', 'success');
+        closeModal('edit-note-modal');
+        loadNotes();
+      } catch (err) {
+        showToast('Failed to update note', 'error');
+      }
+    }
+
+    async function togglePin(id, pinned) {
+      try {
+        await API.put('/api/notes', { id, is_pinned: pinned });
+        loadNotes();
+      } catch (err) {
+        showToast('Failed to update note', 'error');
+      }
+    }
+
+    async function deleteNote(id) {
+      if (!await confirmAction('Delete this note?')) return;
+      try {
+        await API.del(`/api/notes?id=${id}`);
+        showToast('Note deleted', 'success');
+        loadNotes();
+      } catch (err) {
+        showToast('Failed to delete note', 'error');
+      }
+    }
+  </script>
+</body>
+</html>

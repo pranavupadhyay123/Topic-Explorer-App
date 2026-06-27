@@ -3,14 +3,12 @@ use serde_json::Value;
 
 /// Extract a JSON object from AI response text (handles markdown fences, extra text)
 pub fn extract_json(text: &str) -> Option<Value> {
-    // Try parsing directly first
     if let Ok(val) = serde_json::from_str::<Value>(text) {
         if val.is_object() {
             return Some(val);
         }
     }
 
-    // Try extracting from markdown code fences
     let cleaned = strip_code_fences(text);
     if let Ok(val) = serde_json::from_str::<Value>(&cleaned) {
         if val.is_object() {
@@ -25,7 +23,6 @@ pub fn extract_json(text: &str) -> Option<Value> {
         }
     }
 
-    // Try finding JSON object between { and }
     if let Some(start) = text.find('{') {
         if let Some(end) = text.rfind('}') {
             let candidate = &text[start..=end];
@@ -44,41 +41,59 @@ pub fn extract_json(text: &str) -> Option<Value> {
 
 /// Extract a JSON array from AI response text
 pub fn extract_json_array(text: &str) -> Option<Value> {
-    // Try parsing directly
-    if let Ok(val) = serde_json::from_str::<Value>(text) {
+    let check_val = |val: &Value| -> Option<Value> {
         if val.is_array() {
-            return Some(val);
+            return Some(val.clone());
+        }
+        if let Some(obj) = val.as_object() {
+            for (_, v) in obj {
+                if v.is_array() {
+                    return Some(v.clone());
+                }
+            }
+        }
+        None
+    };
+
+    if let Ok(val) = serde_json::from_str::<Value>(text) {
+        if let Some(res) = check_val(&val) {
+            return Some(res);
         }
     }
 
     let cleaned = strip_code_fences(text);
     if let Ok(val) = serde_json::from_str::<Value>(&cleaned) {
-        if val.is_array() {
-            return Some(val);
+        if let Some(res) = check_val(&val) {
+            return Some(res);
         }
     }
 
     let sanitized = sanitize_ai_json(&cleaned);
     if let Ok(val) = serde_json::from_str::<Value>(&sanitized) {
-        if val.is_array() {
-            return Some(val);
+        if let Some(res) = check_val(&val) {
+            return Some(res);
         }
     }
 
-    // Try finding JSON array between [ and ]
     if let Some(start) = text.find('[') {
         if let Some(end) = text.rfind(']') {
             let candidate = &text[start..=end];
             let sanitized_candidate = sanitize_ai_json(candidate);
             if let Ok(val) = serde_json::from_str::<Value>(&sanitized_candidate) {
-                if val.is_array() {
-                    return Some(val);
+                if let Some(res) = check_val(&val) {
+                    return Some(res);
                 }
             }
         }
     }
 
-    warn!("Failed to extract JSON array from AI response");
+    if let Some(obj_val) = extract_json(text) {
+        if let Some(res) = check_val(&obj_val) {
+            return Some(res);
+        }
+    }
+
+    warn!("Failed to extract JSON array from AI response: {}", &text[..text.len().min(200)]);
     None
 }
 
@@ -86,7 +101,6 @@ pub fn extract_json_array(text: &str) -> Option<Value> {
 fn strip_code_fences(text: &str) -> String {
     let cleaned = text.trim();
 
-    // Look for ``` block and extract everything inside it
     if let Some(start_idx) = cleaned.find("```") {
         let after_start = &cleaned[start_idx + 3..];
         let content_start = if let Some(newline_pos) = after_start.find('\n') {
@@ -96,7 +110,6 @@ fn strip_code_fences(text: &str) -> String {
         };
         let inner = &after_start[content_start..];
         
-        // Find the matching end fence
         if let Some(end_idx) = inner.find("```") {
             return inner[..end_idx].trim().to_string();
         }
@@ -105,38 +118,34 @@ fn strip_code_fences(text: &str) -> String {
     cleaned.to_string()
 }
 
-/// Sanitize common JSON errors from AI responses
+/// Sanitize common JSON errors in a fast O(N) single pass
 pub fn sanitize_ai_json(text: &str) -> String {
-    let mut result = text.to_string();
+    let chars: Vec<char> = text.chars().collect();
+    let mut write_idx = 0;
+    let mut i = 0;
+    
+    // We modify the string in-place conceptually by overwriting
+    // a buffer to avoid O(N^2) memory allocations.
+    let mut buffer = vec!['\0'; chars.len()];
 
-    // Remove trailing commas before } or ]
-    loop {
-        let prev = result.clone();
-        
-        let mut new_result = String::with_capacity(result.len());
-        let chars: Vec<char> = result.chars().collect();
-        let mut i = 0;
-        while i < chars.len() {
-            if chars[i] == ',' {
-                let mut j = i + 1;
-                while j < chars.len() && chars[j].is_whitespace() {
-                    j += 1;
-                }
-                if j < chars.len() && (chars[j] == '}' || chars[j] == ']') {
-                    // Skip the comma by not pushing it
-                    i += 1;
-                    continue;
-                }
+    while i < chars.len() {
+        if chars[i] == ',' {
+            let mut j = i + 1;
+            while j < chars.len() && chars[j].is_whitespace() {
+                j += 1;
             }
-            new_result.push(chars[i]);
-            i += 1;
+            if j < chars.len() && (chars[j] == '}' || chars[j] == ']') {
+                // Skip the comma by jumping the cursor
+                i = j;
+                continue;
+            }
         }
-        result = new_result;
-
-        if result == prev {
-            break;
-        }
+        buffer[write_idx] = chars[i];
+        write_idx += 1;
+        i += 1;
     }
+
+    let mut result: String = buffer[..write_idx].iter().collect();
 
     if serde_json::from_str::<Value>(&result).is_err() {
         result = attempt_fix_quotes(&result);
@@ -154,7 +163,6 @@ fn attempt_fix_quotes(text: &str) -> String {
 
     for (i, &ch) in chars.iter().enumerate() {
         if !in_string {
-            // Only convert single quotes to double quotes if they look like they wrap a value/key
             if ch == '\'' || ch == '"' {
                 in_string = true;
                 string_char = ch;
